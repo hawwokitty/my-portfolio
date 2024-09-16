@@ -1,0 +1,30 @@
+body {
+  background: url("/field-wallpaper.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.desktop-icons {
+  width: 70px;
+  height: 70px;
+  margin: 4px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.desktop-icons p {
+  text-align: center;
+}
+
+.active-icon {
+  background: rgba(12, 0, 120, 0.6);
+  border: 1px white dotted;
+}
+
+.inactive-icon {
+  text-decoration: none;
+}

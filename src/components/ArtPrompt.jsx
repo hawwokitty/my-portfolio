@@ -67,15 +67,20 @@ export default function ArtPrompt(props) {
               onClick: handleCloseHelp,
             },
             {
-              value: "Generate again",
+              value: "Generate palette again",
               onClick: () => {
                 fetchPalette(); // Fetch a new palette when clicked
+              },
+            },
+            {
+              value: "Generate emoji again",
+              onClick: () => {
                 fetchEmoji(); // Fetch a new emoji when clicked
               },
             },
           ]}
         >
-          <Tabs width="350px" defaultActiveTab="Color Palette">
+          <Tabs width="400px" defaultActiveTab="Color Palette">
             <Tab title="Color Palette">
               <p>
                 If you need ideas for what to draw, feel free to use the
@@ -120,7 +125,7 @@ export default function ArtPrompt(props) {
                 Here is a random emoji to determine the mood of your drawing, if
                 you want:
               </p>
-              <p dangerouslySetInnerHTML={{ __html: emoji }}></p>
+              <h1 dangerouslySetInnerHTML={{ __html: emoji }}></h1>
             </Tab>
           </Tabs>
         </Modal>

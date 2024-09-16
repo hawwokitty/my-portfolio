@@ -4,10 +4,11 @@ import { HelpBook } from "@react95/icons";
 
 export default function ArtPrompt(props) {
   const [palette, setPalette] = useState([]);
+  const [emoji, setEmoji] = useState();
   const showHelp = props.show;
   const handleCloseHelp = props.toggle;
 
-  // Function to fetch color palette from the Express backend
+  // Function to fetch color palette from the vercel backend
   const fetchPalette = async () => {
     try {
       const response = await fetch("https://portfolio-server-gamma-inky.vercel.app/api/palette"); // Fetch from the backend server
@@ -16,6 +17,7 @@ export default function ArtPrompt(props) {
       // Check if the data contains the result array
       if (data.result) {
         setPalette(data.result); // Set the palette with the RGB values array
+        
       }
     } catch (error) {
       console.error("Error fetching color palette:", error);
@@ -26,6 +28,26 @@ export default function ArtPrompt(props) {
   useEffect(() => {
     fetchPalette();
   }, []);
+
+  // Function to fetch emoji from api
+  const fetchEmoji = async () => {
+    try {
+      const response = await fetch("https://emojihub.yurace.pro/api/random"); // fetch a random emoji from the api
+      const data = await response.json();
+      if (data && data.htmlCode) {  // Check for the correct structure
+        setEmoji(data.htmlCode[0]); // Set the emoji using the first HTML code in the array
+        console.log(data.htmlCode[0]);
+      }
+    } catch (error) {
+      console.error("Error fetching emoji", error);
+    }
+  };
+  
+   // Fetch color palette on component mount
+   useEffect(() => {
+    fetchEmoji();
+  }, []);
+  
 
   return (
     <>
@@ -48,6 +70,7 @@ export default function ArtPrompt(props) {
               value: "Generate again",
               onClick: () => {
                 fetchPalette(); // Fetch a new palette when clicked
+                fetchEmoji(); // Fetch a new emoji when clicked
               },
             },
           ]}
@@ -97,6 +120,7 @@ export default function ArtPrompt(props) {
                 Here is a random emoji to determine the mood of your drawing, if
                 you want:
               </p>
+              <p dangerouslySetInnerHTML={{ __html: emoji }}></p>
             </Tab>
           </Tabs>
         </Modal>

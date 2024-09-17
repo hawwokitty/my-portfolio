@@ -28,3 +28,13 @@ body {
 .inactive-icon {
   text-decoration: none;
 }
+
+.dropdown-menu {
+  position: absolute; /* Ensure it positions relative to the modal */
+  z-index: 9999; /* Ensure it appears above other elements */
+}
+
+.address-bar {
+  display: flex;
+  padding: 5px;
+}

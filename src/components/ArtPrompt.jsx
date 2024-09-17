@@ -36,7 +36,7 @@ export default function ArtPrompt(props) {
       const data = await response.json();
       if (data && data.htmlCode) {  // Check for the correct structure
         setEmoji(data.htmlCode[0]); // Set the emoji using the first HTML code in the array
-        console.log(data.htmlCode[0]);
+        // console.log(data.htmlCode[0]);
       }
     } catch (error) {
       console.error("Error fetching emoji", error);
@@ -47,6 +47,7 @@ export default function ArtPrompt(props) {
    useEffect(() => {
     fetchEmoji();
   }, []);
+  
   
 
   return (

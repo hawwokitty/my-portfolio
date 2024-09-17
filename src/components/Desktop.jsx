@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pbrush1, MsawtAwtIcon, Explorer108, Gcdef100 } from "@react95/icons";
+import { Pbrush1, MsawtAwtIcon, Explorer108, Gcdef100, Progman11, Wordpad } from "@react95/icons";
 
 export default function Desktop(props) {
   const handleOpenPaint = props.openPaint;
@@ -45,6 +45,22 @@ export default function Desktop(props) {
       >
         <Gcdef100 variant="32x32_4" />
         <p>Streaming</p>
+      </div>
+      <div
+        className={activeIcon === 5 ? "active-icon" : "inactive-icon"}
+        onClick={() => handleToggleIcon(5)}
+        onDoubleClick={handleOpenStreaming}
+      >
+        <Progman11 variant="32x32_4"/>
+        <p>Arts & Crafts</p>
+      </div>
+      <div
+        className={activeIcon === 6 ? "active-icon" : "inactive-icon"}
+        onClick={() => handleToggleIcon(6)}
+        onDoubleClick={handleOpenStreaming}
+      >
+       <Wordpad variant="32x32_4"/>
+        <p>Resume</p>
       </div>
     </div>
   );

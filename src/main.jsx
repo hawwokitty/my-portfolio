@@ -5,6 +5,7 @@ import './index.css'
 import './App.css'
 import '@react95/core/GlobalStyle';
 import '@react95/core/themes/candy.css';
+import "react-resizable/css/styles.css";
 
 createRoot(document.getElementById('root')).render(
   <ModalProvider>

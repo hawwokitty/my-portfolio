@@ -7,6 +7,7 @@ export default function Desktop(props) {
   const [activeIcon, setActiveIcon] = useState(null);
   const handleOpenCoding = props.openCoding;
   const handleOpenTrash = props.openTrash;
+  const handleOpenArtsAndCrafts = props.openArts;
 
   const handleToggleIcon = (iconId) => {
     setActiveIcon((prev) => (prev === iconId ? null : iconId));
@@ -49,7 +50,7 @@ export default function Desktop(props) {
       <div
         className={activeIcon === 5 ? "active-icon" : "inactive-icon"}
         onClick={() => handleToggleIcon(5)}
-        onDoubleClick={handleOpenStreaming}
+        onDoubleClick={handleOpenArtsAndCrafts}
       >
         <Progman11 variant="32x32_4"/>
         <p>Arts & Crafts</p>

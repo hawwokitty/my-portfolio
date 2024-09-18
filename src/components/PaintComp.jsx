@@ -10,7 +10,7 @@ export default function PaintComp(props) {
 
   // Define the initial size of the resizable content
   const [contentSize, setContentSize] = useState({
-    width: window.innerWidth * 0.6 - 5, // Initial width 60% of screen
+    width: window.innerWidth * 0.5 - 5, // Initial width 50% of screen
     height: window.innerHeight * 0.5 - 27, // Initial height 50% of screen
   });
 
@@ -31,7 +31,7 @@ export default function PaintComp(props) {
           width={`${contentSize.width + 5}px`} // Apply resizable width
           height={`${contentSize.height + 27}px`} // Apply resizable height
           icon={<Mspaint variant="16x16_4" />}
-          title="untitled - Paint"
+          title="untitled - Paint (Not made by me)"
           defaultPosition={{ x: 20, y: 20 }}
           onClose={handleClosePaint}
           onHelp={handleShowHelp}

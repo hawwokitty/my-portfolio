@@ -38,3 +38,21 @@ body {
   display: flex;
   padding: 5px;
 }
+
+.streaming-icons {
+  display: flex;
+}
+
+.streaming-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  cursor:pointer;
+}
+
+.twitch-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

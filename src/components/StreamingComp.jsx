@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { Modal, Frame, List } from "@react95/core";
-import { ResizableBox } from "react-resizable";
+import { Modal, Frame, List, Dropdown } from "@react95/core";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Explore,
+  Mplayer10,
+  Printer,
+  Mmsys113,
+} from "@react95/icons";
+// import { ResizableBox } from "react-resizable";
+import Trailer from "./Trailer";
 
 export default function StreamingComp(props) {
   const showModal = props.show;
@@ -11,12 +20,12 @@ export default function StreamingComp(props) {
     height: 550,
   });
 
-  const handleResize = (event, { size }) => {
-    setContentSize({
-      width: size.width,
-      height: size.height,
-    });
-  };
+  // const handleResize = (event, { size }) => {
+  //   setContentSize({
+  //     width: size.width,
+  //     height: size.height,
+  //   });
+  // };
 
   const handleCloseModal = () => toggleShowModal(false);
 
@@ -29,7 +38,7 @@ export default function StreamingComp(props) {
           height={`${contentSize.height + 42}px`}
           icon={
             <img
-              src="./public/twitch-no-bg.png"
+              src="/twitch-no-bg.png"
               alt="Twitch Icon"
               style={{ width: "16px", height: "16px" }}
             />
@@ -144,41 +153,79 @@ export default function StreamingComp(props) {
             onResize={handleResize}
             resizeHandles={["se"]}
           > */}
-            <Frame
-              bgColor="$material"
-              boxShadow="$out"
-              h="45px"
-              w="100%"
-              style={{ position: "relative" }} // Ensure positioning
-            />
-            <Frame
-              bgColor="$material"
-              boxShadow="$out"
-              h="26px"
-              w="100%"
-              style={{ position: "relative" }} // Ensure positioning
-            >
-              <div className="address-bar">
-                <p>Address</p>
-                <Frame
-                  bgColor="white"
-                  boxShadow="$in"
-                  h="20px"
-                  w="100%"
-                  style={{ position: "relative" }} // Ensure positioning
-                ></Frame>
+          <Frame
+            bgColor="$material"
+            boxShadow="$out"
+            h="45px"
+            w="100%"
+            style={{ position: "relative" }} // Ensure positioning
+          >
+            <div className="streaming-icons">
+              <div className="streaming-icon">
+                <ArrowLeft variant="32x32_4" style={{ height: "25px" }} />
+                <span>Back</span>
+              </div>
+              <div className="streaming-icon">
+                <ArrowRight variant="32x32_4" style={{ height: "25px" }} />
+                <span>Forward</span>
+              </div>
+              <div className="streaming-icon">
+                <Explore variant="32x32_4" style={{ height: "25px" }} />
+                <span>Search</span>
+              </div>
+              <a href="https://www.youtube.com/@hawwokitty" target="_blank">
+              <div className="streaming-icon">
+                <Mplayer10 variant="32x32_4" style={{ height: "25px" }} />
+                <span>Youtube</span>
+              </div>
+              </a>
+              <a href="https://www.twitch.tv/hawwokitty" target="_blank">
+                <div className="streaming-icon">
+                  <Mmsys113 variant="32x32_4" style={{ height: "25px" }} />
+                  <span>Twitch</span>
+                </div>
+              </a>
+              <div className="streaming-icon">
+                <Printer variant="32x32_4" style={{ height: "25px" }} />
+                <span>Print</span>
+              </div>
+            </div>
+          </Frame>
+          <Frame
+            bgColor="$material"
+            boxShadow="$out"
+            h="30px"
+            w="100%"
+            style={{ position: "relative" }} // Ensure positioning
+          >
+            <div className="address-bar">
+              <span style={{ padding: "5px" }}>Address</span>
+              {/* <Frame
+                bgColor="white"
+                boxShadow="$in"
+                h="20px"
+                w="100%"
+                style={{ position: "relative", padding: "5px" }} // Ensure positioning
+              > */}
+                <Dropdown options={["https://www.twitch.tv/hawwokitty"]} />
+                {/* https://www.twitch.tv/hawwokitty */}
+              {/* </Frame> */}
+            </div>
+          </Frame>
+          <Frame
+            w="100%"
+            h="100%"
+            bgColor="$material"
+            boxShadow="$out"
+            padding="$4"
+          >
+            <Frame h="100%" bgColor="white" boxShadow="$in">
+              <div className="twitch-page">
+              <img src="Twitch_logo.png" alt="Twitch logo" style={{ height:"50px" }}/>
+              <Trailer />
               </div>
             </Frame>
-            <Frame
-              w="100%"
-              h="100%"
-              bgColor="$material"
-              boxShadow="$out"
-              padding="$4"
-            >
-              <Frame h="100%" bgColor="white" boxShadow="$in" />
-            </Frame>
-          {/* </ResizableBox> */}
+          </Frame>
         </Modal>
       )}
     </>

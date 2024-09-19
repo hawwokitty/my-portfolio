@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Modal, List, Frame, Tree, Dropdown } from "@react95/core";
+import { Modal, List, Frame, Tree, Dropdown, Button } from "@react95/core";
 import { Winpopup3 } from "@react95/icons";
 
 const getNormalImages = async () => {
@@ -78,13 +78,22 @@ export default function ArtsAndCrafts(props) {
                       label: "Normal",
                       children: normalImages.map((image) => ({
                         id: image.id,
-                        label: image.label,
+                        label: (
+                          <span
+                            key={image.id}
+                            onClick={() => handleImageClick(image.src)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {image.label}
+                          </span>
+                        ),
                         icon: (
                           <img
+                            key={image.id}
                             onClick={() => handleImageClick(image.src)}
                             src={image.src}
                             alt={image.label}
-                            style={{ width: "15px" }}
+                            style={{ width: "15px", cursor: "pointer" }}
                           />
                         ),
                       })),
@@ -94,13 +103,22 @@ export default function ArtsAndCrafts(props) {
                       label: "Abstract/Vent",
                       children: abstractImages.map((image) => ({
                         id: image.id,
-                        label: image.label,
+                        label: (
+                          <span
+                            key={image.id}
+                            onClick={() => handleImageClick(image.src)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {image.label}
+                          </span>
+                        ),
                         icon: (
                           <img
+                            key={image.id}
                             onClick={() => handleImageClick(image.src)}
                             src={image.src}
                             alt={image.label}
-                            style={{ width: "15px" }}
+                            style={{ width: "15px", cursor: "pointer" }}
                           />
                         ),
                       })),
@@ -182,18 +200,28 @@ export default function ArtsAndCrafts(props) {
           }}
           menu={[
             {
-              name: "File",
+              name: (
+                <>
+                  <u>F</u>ile
+                </>
+              ),
               list: (
-                <List width="200px">
-                  <List.Item onClick={handleCloseArtsAndCrafts}>Exit</List.Item>
+                <List width="200px" className="dropdown-menu">
+                  <List.Item key="exit-item" onClick={handleCloseArtsAndCrafts}>
+                    Exit
+                  </List.Item>
                 </List>
               ),
             },
             {
-              name: "Edit",
+              name: (
+                <>
+                  <u>E</u>dit
+                </>
+              ),
               list: (
-                <List width="200px">
-                  <List.Item>Copy</List.Item>
+                <List width="200px" className="dropdown-menu">
+                  <List.Item key="copy-item">Copy</List.Item>
                 </List>
               ),
             },
@@ -229,6 +257,14 @@ export default function ArtsAndCrafts(props) {
                   <img src={image} alt={image} />
                 </Frame>
               </div>
+              <Button
+                onClick={() =>
+                  (document.body.style.backgroundImage = `url(${image})`)
+                }
+                className="arts-bg-button"
+              >
+                Set as background image
+              </Button>
             </Frame>
           </div>
         </Modal>

@@ -99,3 +99,7 @@ body {
   height: 540px;
   overflow: auto;
 }
+
+.arts-bg-button {
+  margin: 10px;
+}

@@ -64,7 +64,9 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item onClick={handleCloseModal}>Exit</List.Item>
+                  <List.Item key="exit-item" onClick={handleCloseModal}>
+                    Exit
+                  </List.Item>
                 </List>
               ),
             },
@@ -79,7 +81,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item>Copy</List.Item>
+                  <List.Item key="copy-item">Copy</List.Item>
                 </List>
               ),
             },
@@ -94,7 +96,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item>idk</List.Item>
+                  <List.Item key="idk-item">idk</List.Item>
                 </List>
               ),
             },
@@ -109,7 +111,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item>???</List.Item>
+                  <List.Item key="idk2-item">???</List.Item>
                 </List>
               ),
             },
@@ -124,7 +126,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item>??</List.Item>
+                  <List.Item key="idk3-item">??</List.Item>
                 </List>
               ),
             },
@@ -139,20 +141,12 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item>??</List.Item>
+                  <List.Item key="idk4-item">??</List.Item>
                 </List>
               ),
             },
           ]}
         >
-          {/* <ResizableBox
-            width={contentSize.width}
-            height={contentSize.height}
-            minConstraints={[300, 200]}
-            maxConstraints={[window.innerWidth, window.innerHeight]}
-            onResize={handleResize}
-            resizeHandles={["se"]}
-          > */}
           <Frame
             bgColor="$material"
             boxShadow="$out"
@@ -161,31 +155,39 @@ export default function StreamingComp(props) {
             style={{ position: "relative" }} // Ensure positioning
           >
             <div className="streaming-icons">
-              <div className="streaming-icon">
+              <div className="streaming-icon" key="back">
                 <ArrowLeft variant="32x32_4" style={{ height: "25px" }} />
                 <span>Back</span>
               </div>
-              <div className="streaming-icon">
+              <div className="streaming-icon" key="forward">
                 <ArrowRight variant="32x32_4" style={{ height: "25px" }} />
                 <span>Forward</span>
               </div>
-              <div className="streaming-icon">
+              <div className="streaming-icon" key="search">
                 <Explore variant="32x32_4" style={{ height: "25px" }} />
                 <span>Search</span>
               </div>
-              <a href="https://www.youtube.com/@hawwokitty" target="_blank">
-              <div className="streaming-icon">
-                <Mplayer10 variant="32x32_4" style={{ height: "25px" }} />
-                <span>Youtube</span>
-              </div>
+              <a
+                href="https://www.youtube.com/@hawwokitty"
+                target="_blank"
+                key="youtube"
+              >
+                <div className="streaming-icon">
+                  <Mplayer10 variant="32x32_4" style={{ height: "25px" }} />
+                  <span>Youtube</span>
+                </div>
               </a>
-              <a href="https://www.twitch.tv/hawwokitty" target="_blank">
+              <a
+                href="https://www.twitch.tv/hawwokitty"
+                target="_blank"
+                key="twitch"
+              >
                 <div className="streaming-icon">
                   <Mmsys113 variant="32x32_4" style={{ height: "25px" }} />
                   <span>Twitch</span>
                 </div>
               </a>
-              <div className="streaming-icon">
+              <div className="streaming-icon" key="print">
                 <Printer variant="32x32_4" style={{ height: "25px" }} />
                 <span>Print</span>
               </div>
@@ -207,8 +209,8 @@ export default function StreamingComp(props) {
                 w="100%"
                 style={{ position: "relative", padding: "5px" }} // Ensure positioning
               > */}
-                <Dropdown options={["https://www.twitch.tv/hawwokitty"]} />
-                {/* https://www.twitch.tv/hawwokitty */}
+              <Dropdown options={["https://www.twitch.tv/hawwokitty"]} />
+              {/* https://www.twitch.tv/hawwokitty */}
               {/* </Frame> */}
             </div>
           </Frame>
@@ -221,8 +223,12 @@ export default function StreamingComp(props) {
           >
             <Frame h="100%" bgColor="white" boxShadow="$in">
               <div className="twitch-page">
-              <img src="Twitch_logo.png" alt="Twitch logo" style={{ height:"50px" }}/>
-              <Trailer />
+                <img
+                  src="Twitch_logo.png"
+                  alt="Twitch logo"
+                  style={{ height: "50px" }}
+                />
+                <Trailer />
               </div>
             </Frame>
           </Frame>

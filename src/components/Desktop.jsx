@@ -8,6 +8,7 @@ export default function Desktop(props) {
   const handleOpenCoding = props.openCoding;
   const handleOpenTrash = props.openTrash;
   const handleOpenArtsAndCrafts = props.openArts;
+  const handleOpenResume = props.openResume;
 
   const handleToggleIcon = (iconId) => {
     setActiveIcon((prev) => (prev === iconId ? null : iconId));
@@ -58,7 +59,7 @@ export default function Desktop(props) {
       <div
         className={activeIcon === 6 ? "active-icon" : "inactive-icon"}
         onClick={() => handleToggleIcon(6)}
-        onDoubleClick={handleOpenStreaming}
+        onDoubleClick={handleOpenResume}
       >
        <Wordpad variant="32x32_4"/>
         <p>Resume</p>

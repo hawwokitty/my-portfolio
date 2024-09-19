@@ -1,5 +1,5 @@
 body {
-  background: url("/field-wallpaper.jpg") no-repeat center center fixed;
+  background: url("./images/my-art/abstract-vent/pink.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -55,4 +55,47 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.arts-fields {
+  display: flex;
+  height: 100%;
+}
+
+.arts-picture-text {
+  display: flex;
+  padding: 5px;
+}
+
+.arts-img-div {
+  width: 100%; 
+  height: 0;
+  padding-top: 100%; 
+  position: relative;
+  overflow: hidden;
+}
+
+.arts-img-div > .arts-frame {
+  position: absolute;
+  top: 0;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Pull it back by 50% of its width to center it */
+  width: 95%; 
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arts-img-div img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  padding: 3px;
+}
+
+.arts-tree {
+  width: 100%;
+  height: 540px;
+  overflow: auto;
 }

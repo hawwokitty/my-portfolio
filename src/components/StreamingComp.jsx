@@ -38,7 +38,7 @@ export default function StreamingComp(props) {
           height={`${contentSize.height + 42}px`}
           icon={
             <img
-              src="/twitch-no-bg.png"
+              src="./twitch-no-bg.png"
               alt="Twitch Icon"
               style={{ width: "16px", height: "16px" }}
             />

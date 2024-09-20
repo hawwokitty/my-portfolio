@@ -81,22 +81,18 @@ export default function ArtsAndCrafts(props) {
                       label: "Normal",
                       children: normalImages.map((image) => ({
                         id: image.id,
+                        // Suggestion from ggdaltoso
+                        onClick: () => handleImageClick(image.src),
                         label: (
-                          <span
-                            key={image.id}
-                            onClick={() => handleImageClick(image.src)}
-                            style={{ cursor: "pointer" }}
-                          >
+                          <span style={{ cursor: "pointer" }}>
                             {image.label}
                           </span>
                         ),
                         icon: (
                           <img
-                            key={image.id}
-                            onClick={() => handleImageClick(image.src)}
                             src={image.src}
                             alt={image.label}
-                            style={{ width: "15px", cursor: "pointer" }}
+                            style={{ width: "15px" }}
                           />
                         ),
                       })),
@@ -106,22 +102,18 @@ export default function ArtsAndCrafts(props) {
                       label: "Abstract/Vent",
                       children: abstractImages.map((image) => ({
                         id: image.id,
+                        // You can set it only once here and leave label and img as is
+                        onClick: () => handleImageClick(image.src),
                         label: (
-                          <span
-                            key={image.id}
-                            onClick={() => handleImageClick(image.src)}
-                            style={{ cursor: "pointer" }}
-                          >
+                          <span style={{ cursor: "pointer" }}>
                             {image.label}
                           </span>
                         ),
                         icon: (
                           <img
-                            key={image.id}
-                            onClick={() => handleImageClick(image.src)}
                             src={image.src}
                             alt={image.label}
-                            style={{ width: "15px", cursor: "pointer" }}
+                            style={{ width: "15px" }}
                           />
                         ),
                       })),

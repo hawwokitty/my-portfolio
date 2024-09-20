@@ -47,7 +47,10 @@ export default function ArtsAndCrafts(props) {
   const toggleShowArtsAndCrafts = props.toggle;
   const [image, setImage] = useState("");
 
-  const handleCloseArtsAndCrafts = () => toggleShowArtsAndCrafts(false);
+  const handleCloseArtsAndCrafts = () => {
+    toggleShowArtsAndCrafts(false);
+    setImage("");
+  };
   const handleImageClick = (imageSrc) => {
     setImage(imageSrc);
   };

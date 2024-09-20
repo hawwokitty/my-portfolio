@@ -51,6 +51,10 @@ body {
   cursor:pointer;
 }
 
+/* .streaming-dropdown {
+  width: 300px;
+} */
+
 .twitch-page {
   display: flex;
   flex-direction: column;
@@ -102,4 +106,8 @@ body {
 
 .arts-bg-button {
   margin: 10px;
+}
+
+.resume-skills {
+  padding: 5px;
 }

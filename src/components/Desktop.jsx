@@ -17,6 +17,7 @@ export default function Desktop(props) {
   const handleOpenTrash = props.openTrash;
   const handleOpenArtsAndCrafts = props.openArts;
   const handleOpenResume = props.openResume;
+  const handleOpenContact = props.openContact;
 
   const handleToggleIcon = (iconId) => {
     setActiveIcon((prev) => (prev === iconId ? null : iconId));
@@ -75,7 +76,7 @@ export default function Desktop(props) {
       <div
         className={activeIcon === 7 ? "active-icon" : "inactive-icon"}
         onClick={() => handleToggleIcon(7)}
-        onDoubleClick={handleOpenResume}
+        onDoubleClick={handleOpenContact}
       >
         <Awfxcg321304 variant="32x32_4" />
         <p>Contact</p>

@@ -1,5 +1,6 @@
 body {
-  background: url("./images/my-art/abstract-vent/pink.jpg") no-repeat center center fixed;
+  background: url("./images/my-art/abstract-vent/pink.jpg") no-repeat center
+    center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -48,7 +49,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 5px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 /* .streaming-dropdown {
@@ -72,9 +73,9 @@ body {
 }
 
 .arts-img-div {
-  width: 100%; 
+  width: 100%;
   height: 0;
-  padding-top: 100%; 
+  padding-top: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -83,8 +84,10 @@ body {
   position: absolute;
   top: 0;
   left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Pull it back by 50% of its width to center it */
-  width: 95%; 
+  transform: translateX(
+    -50%
+  ); /* Pull it back by 50% of its width to center it */
+  width: 95%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -111,3 +114,4 @@ body {
 .resume-skills {
   padding: 5px;
 }
+

@@ -5,6 +5,7 @@ import StreamingComp from "./components/StreamingComp";
 import ArtPrompt from "./components/ArtPrompt";
 import ArtsAndCrafts from "./components/ArtsAndCrafts";
 import Resume from "./components/Resume";
+import Contact from "./components/Contact";
 
 import { useState } from "react";
 
@@ -14,11 +15,13 @@ function App() {
   const [showHelp, toggleShowHelp] = useState(false);
   const [showArtsAndCrafts, toggleShowArtsAndCrafts] = useState(false);
   const [showResume, toggleShowResume] = useState(false);
+  const [showContact, toggleShowContact] = useState(false);
 
   const handleOpenArtsAndCrafts = () => toggleShowArtsAndCrafts(true);
   const handleOpenPaint = () => toggleShowPaint(true);
   const handleOpenStreaming = () => toggleShowStreaming(true);
   const handleOpenResume = () => toggleShowResume(true);
+  const handleOpenContact = () => toggleShowContact(true);
 
   const handleShowHelp = () => toggleShowHelp(true);
   const handleCloseHelp = () => toggleShowHelp(false);
@@ -31,6 +34,7 @@ function App() {
         openStreaming={handleOpenStreaming}
         openArts={handleOpenArtsAndCrafts}
         openResume={handleOpenResume}
+        openContact={handleOpenContact}
       />
       <PaintComp
         show={showPaint}
@@ -45,6 +49,10 @@ function App() {
       <Resume
         show={showResume}
         toggle={toggleShowResume}
+      />
+      <Contact
+        show={showContact}
+        toggle={toggleShowContact}
       />
       {showHelp && <ArtPrompt show={showHelp} toggle={handleCloseHelp} />}
     </>

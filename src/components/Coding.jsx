@@ -8,13 +8,19 @@ import {
   Tab,
   Tabs,
   TitleBar,
+  Button
 } from "@react95/core";
 import { MystifyYourMind100 } from "@react95/icons";
+import DemoComp from "./DemoComp";
+// import { Button } from "react95";
 
 export default function Coding(props) {
   const showCoding = props.show;
   const toggleShowCoding = props.toggle;
   const [showProject, setShowProject] = useState("");
+  const [showDemoComp, toggleShowDemoComp] = useState(false);
+
+  const handleOpenDemoComp = () => toggleShowDemoComp(true);
 
   const handleCloseCoding = () => {
     toggleShowCoding(false);
@@ -202,7 +208,14 @@ export default function Coding(props) {
                   <p>{showProject.description}</p>
                 </Tab>
                 <Tab title="Demo">
-                  <p>{showProject.demo}</p>
+                  <a
+                    href={showProject.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Show Demo
+                    <Button onClick={handleOpenDemoComp}>open demo</Button>
+                  </a>
                 </Tab>
                 <Tab title="GitHub">
                   <a
@@ -210,14 +223,17 @@ export default function Coding(props) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    View on GitHub
+                    View code on GitHub
                   </a>
                 </Tab>
               </Tabs>
             </Frame>
+            
           </div>
         </Modal>
       )}
+      <DemoComp show={showDemoComp}
+        toggle={toggleShowDemoComp}/>
     </>
   );
 }

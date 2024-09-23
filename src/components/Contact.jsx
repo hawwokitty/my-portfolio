@@ -70,7 +70,7 @@ export default function Contact(props) {
             <p>Or find me on any of my social medias:</p>
             <div className="contact-icons">
             <Tooltip delay={500} text="Github">
-              <a href="https://github.com/hawwokitty" target="_blank">
+              <a href="https://github.com/hawwokitty" target="_blank" rel="noopener noreferrer">
                 <img
                   src="./github-logo.png"
                   alt="Github"
@@ -79,7 +79,7 @@ export default function Contact(props) {
               </a>
             </Tooltip>
             <Tooltip delay={500} text="YouTube">
-            <a href="https://www.youtube.com/@hawwokitty" target="_blank">
+            <a href="https://www.youtube.com/@hawwokitty" target="_blank" rel="noopener noreferrer">
               <img
                 src="./YouTube.png"
                 alt="Youtube"
@@ -88,7 +88,7 @@ export default function Contact(props) {
             </a>
             </Tooltip>
             <Tooltip delay={500} text="Instagram">
-            <a href="https://www.instagram.com/mx.sofa/" target="_blank">
+            <a href="https://www.instagram.com/mx.sofa/" target="_blank" rel="noopener noreferrer">
               <img
                 src="./Instagram-icon.png"
                 alt="Instagram"
@@ -97,7 +97,7 @@ export default function Contact(props) {
             </a>
             </Tooltip>
             <Tooltip delay={500} text="Twtich">
-            <a href="https://www.twitch.tv/hawwokitty" target="_blank">
+            <a href="https://www.twitch.tv/hawwokitty" target="_blank" rel="noopener noreferrer">
               <img
                 src="./Twitch-icon.png"
                 alt="Twitch"
@@ -106,7 +106,7 @@ export default function Contact(props) {
             </a>
             </Tooltip>
             <Tooltip delay={500} text="Discord">
-            <a href="https://discord.gg/SMYnhRvHnz" target="_blank">
+            <a href="https://discord.gg/SMYnhRvHnz" target="_blank" rel="noopener noreferrer">
               <img
                 src="./Discord-icon.png"
                 alt="Discord"

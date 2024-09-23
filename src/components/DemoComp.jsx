@@ -7,47 +7,32 @@ import {
   Mplayer10,
   Printer,
   Mmsys113,
+  Ie
 } from "@react95/icons";
 // import { ResizableBox } from "react-resizable";
 import Trailer from "./Trailer";
 
-export default function StreamingComp(props) {
-  const showModal = props.show;
-  const toggleShowModal = props.toggle;
+export default function DemoComp(props) {
+  const showDemoComp = props.show;
+  const toggleShowDemoComp = props.toggle;
 
-  const [contentSize, setContentSize] = useState({
-    width: 700,
-    height: 550,
-  });
-
-  // const handleResize = (event, { size }) => {
-  //   setContentSize({
-  //     width: size.width,
-  //     height: size.height,
-  //   });
-  // };
-
-  const handleCloseModal = () => toggleShowModal(false);
+  const handleCloseDemoComp = () => toggleShowDemoComp(false);
 
   return (
     <>
-      {showModal && (
+      {showDemoComp && (
         <Modal
           className="resize"
-          key="streaming-modal"
-          width={`${contentSize.width + 5}px`}
-          height={`${contentSize.height + 42}px`}
+          key="demo-modal"
+          width="90%"
+          height="90%"
           icon={
-            <img
-              src="./twitch-no-bg.png"
-              alt="Twitch Icon"
-              style={{ width: "16px", height: "16px" }}
-            />
+            <Ie variant="16x16_8"/>
           }
-          title="My Twitch"
+          title="Demo"
           dragOptions={{
             defaultPosition: {
-              x: 200,
+              x: 25,
               y: 0,
             },
           }}
@@ -58,7 +43,7 @@ export default function StreamingComp(props) {
                 alert("Help!");
               }}
             />,
-            <TitleBar.Close key="close" onClick={handleCloseModal} />,
+            <TitleBar.Close key="close" onClick={handleCloseDemoComp} />,
           ]}
           menu={[
             {
@@ -72,7 +57,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item key="exit-item" onClick={handleCloseModal}>
+                  <List.Item key="exit-item" onClick={handleCloseDemoComp}>
                     Exit
                   </List.Item>
                 </List>
@@ -204,16 +189,7 @@ export default function StreamingComp(props) {
           >
             <div className="address-bar">
               <span style={{ padding: "5px" }}>Address</span>
-              {/* <Frame
-                bgColor="white"
-                boxShadow="$in"
-                h="20px"
-                w="100%"
-                style={{ position: "relative", padding: "5px" }} // Ensure positioning
-              > */}
-              <Dropdown options={["https://www.twitch.tv/hawwokitty"]} />
-              {/* https://www.twitch.tv/hawwokitty */}
-              {/* </Frame> */}
+              <Dropdown options={["temporarily just showing rate my cat"]} />
             </div>
           </Frame>
           <Frame
@@ -224,21 +200,14 @@ export default function StreamingComp(props) {
             boxShadow="$out"
             padding="$4"
           >
-            <Frame
-              key="streaming-frame-4"
-              h="100%"
-              bgColor="white"
-              boxShadow="$in"
-            >
-              <div className="twitch-page">
-                <img
-                  src="Twitch_logo.png"
-                  alt="Twitch logo"
-                  style={{ height: "50px" }}
-                />
-                <Trailer />
-              </div>
-            </Frame>
+           
+              <iframe
+              src="https://hawwokitty.github.io/Copy-of-Rate-My-Cat/"
+              width="100%"
+              height="100%"
+            ></iframe>
+              
+             
           </Frame>
         </Modal>
       )}

@@ -119,3 +119,11 @@ body {
   resize: both;
   overflow: auto;
 }
+
+.contact-icons a {
+  padding: 3px;
+}
+
+.contact-info {
+  padding: 15px;
+}

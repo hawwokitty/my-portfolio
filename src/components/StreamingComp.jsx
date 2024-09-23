@@ -47,13 +47,19 @@ export default function StreamingComp(props) {
           title="My Twitch"
           dragOptions={{
             defaultPosition: {
-              x: 60,
-              y: 20
-            }
+              x: 200,
+              y: 0,
+            },
           }}
-          titleBarOptions={[<TitleBar.Help key="help" onClick={() => {
-            alert('Help!');
-          }} />, <TitleBar.Close key="close" onClick={handleCloseModal} />]}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert("Help!");
+              }}
+            />,
+            <TitleBar.Close key="close" onClick={handleCloseModal} />,
+          ]}
           menu={[
             {
               name: (
@@ -98,7 +104,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item key="idk-item">idk</List.Item>
+                  <List.Item key="idk-item-1">idk</List.Item>
                 </List>
               ),
             },
@@ -113,7 +119,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item key="idk2-item">???</List.Item>
+                  <List.Item key="idk2-item-2">???</List.Item>
                 </List>
               ),
             },
@@ -128,7 +134,7 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item key="idk3-item">??</List.Item>
+                  <List.Item key="idk2-item-3">??</List.Item>
                 </List>
               ),
             },
@@ -143,13 +149,14 @@ export default function StreamingComp(props) {
                   width="200px"
                   className="dropdown-menu" // Add class for custom styling
                 >
-                  <List.Item key="idk4-item">??</List.Item>
+                  <List.Item key="idk2-item-4">??</List.Item>
                 </List>
               ),
             },
           ]}
         >
           <Frame
+            key="streaming-frame-1"
             bgColor="$material"
             boxShadow="$out"
             h="45px"
@@ -157,45 +164,38 @@ export default function StreamingComp(props) {
             style={{ position: "relative" }} // Ensure positioning
           >
             <div className="streaming-icons">
-              <div className="streaming-icon" key="back">
+              <div className="streaming-icon" key="back-icon">
                 <ArrowLeft variant="32x32_4" style={{ height: "25px" }} />
                 <span>Back</span>
               </div>
-              <div className="streaming-icon" key="forward">
+              <div className="streaming-icon" key="forward-icon">
                 <ArrowRight variant="32x32_4" style={{ height: "25px" }} />
                 <span>Forward</span>
               </div>
-              <div className="streaming-icon" key="search">
+              <div className="streaming-icon" key="search-icon">
                 <Explore variant="32x32_4" style={{ height: "25px" }} />
                 <span>Search</span>
               </div>
-              <a
-                href="https://www.youtube.com/@hawwokitty"
-                target="_blank"
-                key="youtube"
-              >
-                <div className="streaming-icon">
+              <a href="https://www.youtube.com/@hawwokitty" target="_blank">
+                <div className="streaming-icon" key="youtube-icon">
                   <Mplayer10 variant="32x32_4" style={{ height: "25px" }} />
                   <span>Youtube</span>
                 </div>
               </a>
-              <a
-                href="https://www.twitch.tv/hawwokitty"
-                target="_blank"
-                key="twitch"
-              >
-                <div className="streaming-icon">
+              <a href="https://www.twitch.tv/hawwokitty" target="_blank">
+                <div className="streaming-icon" key="twitch-icon">
                   <Mmsys113 variant="32x32_4" style={{ height: "25px" }} />
                   <span>Twitch</span>
                 </div>
               </a>
-              <div className="streaming-icon" key="print">
+              <div className="streaming-icon" key="print-icon">
                 <Printer variant="32x32_4" style={{ height: "25px" }} />
                 <span>Print</span>
               </div>
             </div>
           </Frame>
           <Frame
+            key="streaming-frame-2"
             bgColor="$material"
             boxShadow="$out"
             h="30px"
@@ -217,13 +217,19 @@ export default function StreamingComp(props) {
             </div>
           </Frame>
           <Frame
+            key="streaming-frame-3"
             w="100%"
             h="100%"
             bgColor="$material"
             boxShadow="$out"
             padding="$4"
           >
-            <Frame h="100%" bgColor="white" boxShadow="$in">
+            <Frame
+              key="streaming-frame-4"
+              h="100%"
+              bgColor="white"
+              boxShadow="$in"
+            >
               <div className="twitch-page">
                 <img
                   src="Twitch_logo.png"

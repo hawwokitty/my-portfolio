@@ -6,6 +6,7 @@ import ArtPrompt from "./components/ArtPrompt";
 import ArtsAndCrafts from "./components/ArtsAndCrafts";
 import Resume from "./components/Resume";
 import Contact from "./components/Contact";
+import Coding from "./components/Coding";
 
 import { useState } from "react";
 
@@ -16,12 +17,14 @@ function App() {
   const [showArtsAndCrafts, toggleShowArtsAndCrafts] = useState(false);
   const [showResume, toggleShowResume] = useState(false);
   const [showContact, toggleShowContact] = useState(false);
+  const [showCoding, toggleShowCoding] = useState(false);
 
   const handleOpenArtsAndCrafts = () => toggleShowArtsAndCrafts(true);
   const handleOpenPaint = () => toggleShowPaint(true);
   const handleOpenStreaming = () => toggleShowStreaming(true);
   const handleOpenResume = () => toggleShowResume(true);
   const handleOpenContact = () => toggleShowContact(true);
+  const handleOpenCoding = () => toggleShowCoding(true);
 
   const handleShowHelp = () => toggleShowHelp(true);
   const handleCloseHelp = () => toggleShowHelp(false);
@@ -35,6 +38,7 @@ function App() {
         openArts={handleOpenArtsAndCrafts}
         openResume={handleOpenResume}
         openContact={handleOpenContact}
+        openCoding={handleOpenCoding}
       />
       <PaintComp
         show={showPaint}
@@ -53,6 +57,10 @@ function App() {
       <Contact
         show={showContact}
         toggle={toggleShowContact}
+      />
+      <Coding
+        show={showCoding}
+        toggle={toggleShowCoding}
       />
       {showHelp && <ArtPrompt show={showHelp} toggle={handleCloseHelp} />}
     </>

@@ -9,10 +9,10 @@ export default function PaintComp(props) {
   const handleShowHelp = props.onHelp;
 
   // Define the initial size of the resizable content
-  const [contentSize, setContentSize] = useState({
-    width: window.innerWidth * 0.5 - 5, // Initial width 50% of screen
-    height: window.innerHeight * 0.5 - 27, // Initial height 50% of screen
-  });
+  // const [contentSize, setContentSize] = useState({
+  //   width: window.innerWidth * 0.5 - 5, // Initial width 50% of screen
+  //   height: window.innerHeight * 0.5 - 27, // Initial height 50% of screen
+  // });
 
   // Handle the resize event to update the size
   // const handleResize = (event, { size }) => {
@@ -29,13 +29,13 @@ export default function PaintComp(props) {
         <Modal
           className="resize"
           key="paint-modal"
-          width={`${contentSize.width + 5}px`} // Apply resizable width
-          height={`${contentSize.height + 27}px`} // Apply resizable height
+          width="600px"
+          height="500px"
           icon={<Mspaint variant="16x16_4" />}
           title="untitled - Paint (Not made by me)"
           dragOptions={{
             defaultPosition: {
-              x: 20,
+              x: 500,
               y: 20
             }
           }} titleBarOptions={[<TitleBar.Help key="help" onClick={handleShowHelp} />, <TitleBar.Close key="close" onClick={handleClosePaint} />]}
@@ -49,7 +49,7 @@ export default function PaintComp(props) {
             onResize={handleResize}
             resizeHandles={["se"]} // Resizable from bottom-right corner
           > */}
-          <Frame h="99%" w="99%">
+          <Frame h="100%" w="100%">
             <iframe
               src="https://jspaint.app"
               width="100%"

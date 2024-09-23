@@ -23,45 +23,45 @@ export default function Resume(props) {
       {showResume && (
         <Modal
           width="400px"
-          height="650px"
+          // height="650px"
           icon={<New16 variant="16x16_4" />}
           title="Resume"
           dragOptions={{
             defaultPosition: {
-              x: 40,
+              x: 100,
               y: 20
             }
           }} titleBarOptions={[<TitleBar.Help key="help" onClick={() => {
             alert('Help!');
           }} />, <TitleBar.Close key="close" onClick={handleCloseResume} />]}
-          menu={[
-            {
-              name: (
-                <>
-                  <u>F</u>ile
-                </>
-              ),
-              list: (
-                <List width="200px" className="dropdown-menu">
-                  <List.Item key="exit-item" onClick={handleCloseResume}>
-                    Exit
-                  </List.Item>
-                </List>
-              ),
-            },
-            {
-              name: (
-                <>
-                  <u>E</u>dit
-                </>
-              ),
-              list: (
-                <List width="200px" className="dropdown-menu">
-                  <List.Item key="copy-item">Copy</List.Item>
-                </List>
-              ),
-            },
-          ]}
+          // menu={[
+          //   {
+          //     name: (
+          //       <>
+          //         <u>F</u>ile
+          //       </>
+          //     ),
+          //     list: (
+          //       <List width="200px" className="dropdown-menu">
+          //         <List.Item key="exit-item" onClick={handleCloseResume}>
+          //           Exit
+          //         </List.Item>
+          //       </List>
+          //     ),
+          //   },
+          //   {
+          //     name: (
+          //       <>
+          //         <u>E</u>dit
+          //       </>
+          //     ),
+          //     list: (
+          //       <List width="200px" className="dropdown-menu">
+          //         <List.Item key="copy-item">Copy</List.Item>
+          //       </List>
+          //     ),
+          //   },
+          // ]}
         >
           <Tabs defaultActiveTab="About">
             <Tab title="About">

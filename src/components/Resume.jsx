@@ -8,6 +8,7 @@ import {
   Checkbox,
   ProgressBar,
   Avatar,
+  TitleBar
 } from "@react95/core";
 import { New16 } from "@react95/icons";
 
@@ -25,14 +26,14 @@ export default function Resume(props) {
           height="650px"
           icon={<New16 variant="16x16_4" />}
           title="Resume"
-          defaultPosition={{
-            x: 80,
-            y: 5,
-          }}
-          onClose={handleCloseResume}
-          onHelp={() => {
-            console.log("Help!");
-          }}
+          dragOptions={{
+            defaultPosition: {
+              x: 40,
+              y: 20
+            }
+          }} titleBarOptions={[<TitleBar.Help key="help" onClick={() => {
+            alert('Help!');
+          }} />, <TitleBar.Close key="close" onClick={handleCloseResume} />]}
           menu={[
             {
               name: (

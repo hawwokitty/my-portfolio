@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Modal, List, Frame } from "@react95/core";
+import { Modal, List, Frame, TitleBar } from "@react95/core";
 import { Dialer1 } from "@react95/icons";
 
 export default function Contact(props) {
@@ -16,14 +16,14 @@ export default function Contact(props) {
             height="200px"
             icon={<Dialer1 variant="16x16_4"/>}
             title="Contact"
-            defaultPosition={{
-              x: 30,
-              y: 5,
-            }}
-            onClose={handleCloseContact}
-            onHelp={() => {
-              console.log("Help!");
-            }}
+            dragOptions={{
+              defaultPosition: {
+                x: 30,
+                y: 30
+              }
+            }} titleBarOptions={[<TitleBar.Help key="help" onClick={() => {
+              alert('Help!');
+            }} />, <TitleBar.Close key="close" onClick={handleCloseContact} />]}
             menu={[
               {
                 name: (

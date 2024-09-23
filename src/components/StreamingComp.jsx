@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Frame, List, Dropdown } from "@react95/core";
+import { Modal, Frame, List, Dropdown, TitleBar } from "@react95/core";
 import {
   ArrowLeft,
   ArrowRight,
@@ -33,6 +33,7 @@ export default function StreamingComp(props) {
     <>
       {showModal && (
         <Modal
+          className="resize"
           key="streaming-modal"
           width={`${contentSize.width + 5}px`}
           height={`${contentSize.height + 42}px`}
@@ -44,14 +45,15 @@ export default function StreamingComp(props) {
             />
           }
           title="My Twitch"
-          defaultPosition={{
-            x: 230,
-            y: 20,
+          dragOptions={{
+            defaultPosition: {
+              x: 60,
+              y: 20
+            }
           }}
-          onClose={handleCloseModal}
-          onHelp={() => {
-            console.log("Help!");
-          }}
+          titleBarOptions={[<TitleBar.Help key="help" onClick={() => {
+            alert('Help!');
+          }} />, <TitleBar.Close key="close" onClick={handleCloseModal} />]}
           menu={[
             {
               name: (

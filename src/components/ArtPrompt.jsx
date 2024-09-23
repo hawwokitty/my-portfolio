@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Fieldset, Tabs, Tab } from "@react95/core";
+import { Modal, Fieldset, Tabs, Tab, TitleBar } from "@react95/core";
 import { HelpBook } from "@react95/icons";
+import {Hourglass} from "react95";
 
 export default function ArtPrompt(props) {
   const [palette, setPalette] = useState([]);
   const [emoji, setEmoji] = useState();
+  const [loading, setLoading] = useState(false);
   const showHelp = props.show;
   const handleCloseHelp = props.toggle;
 
   // Function to fetch color palette from the vercel backend
   const fetchPalette = async () => {
     try {
-      const response = await fetch("https://portfolio-server-gamma-inky.vercel.app/api/palette"); // Fetch from the backend server
+      const response = await fetch(
+        "https://portfolio-server-gamma-inky.vercel.app/api/palette"
+      ); // Fetch from the backend server
       const data = await response.json();
 
       // Check if the data contains the result array
       if (data.result) {
         setPalette(data.result); // Set the palette with the RGB values array
-        
       }
+      setLoading(true);
     } catch (error) {
       console.error("Error fetching color palette:", error);
     }
@@ -34,7 +38,8 @@ export default function ArtPrompt(props) {
     try {
       const response = await fetch("https://emojihub.yurace.pro/api/random"); // fetch a random emoji from the api
       const data = await response.json();
-      if (data && data.htmlCode) {  // Check for the correct structure
+      if (data && data.htmlCode) {
+        // Check for the correct structure
         setEmoji(data.htmlCode[0]); // Set the emoji using the first HTML code in the array
         // console.log(data.htmlCode[0]);
       }
@@ -42,13 +47,11 @@ export default function ArtPrompt(props) {
       console.error("Error fetching emoji", error);
     }
   };
-  
-   // Fetch color palette on component mount
-   useEffect(() => {
+
+  // Fetch color palette on component mount
+  useEffect(() => {
     fetchEmoji();
   }, []);
-  
-  
 
   return (
     <>
@@ -57,11 +60,21 @@ export default function ArtPrompt(props) {
           key="help-modal"
           icon={<HelpBook variant="16x16_4" />}
           title="What should I draw?"
-          defaultPosition={{ x: 50, y: 20 }}
-          onClose={handleCloseHelp}
-          onHelp={() => {
-            console.log("Help!");
+          dragOptions={{
+            defaultPosition: {
+              x: 50,
+              y: 20,
+            },
           }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert("Help!");
+              }}
+            />,
+            <TitleBar.Close key="close" onClick={handleCloseHelp} />,
+          ]}
           buttons={[
             {
               value: "Ok",
@@ -89,7 +102,7 @@ export default function ArtPrompt(props) {
               </p>
               <Fieldset legend="Generated Color Palette">
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  {palette.map((color, index) => (
+                  {loading ? (palette.map((color, index) => (
                     <div
                       key={index}
                       style={{ display: "flex", alignItems: "center" }}
@@ -105,7 +118,8 @@ export default function ArtPrompt(props) {
                       ></div>
                       <p>{`RGB(${color[0]}, ${color[1]}, ${color[2]})`}</p>
                     </div>
-                  ))}
+                  ))) : (<Hourglass size={32} style={{ margin: 20 }} />)}
+                
                 </div>
               </Fieldset>
               <h4>How to use palette</h4>

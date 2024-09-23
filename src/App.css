@@ -115,3 +115,7 @@ body {
   padding: 5px;
 }
 
+.resize {
+  resize: both;
+  overflow: auto;
+}

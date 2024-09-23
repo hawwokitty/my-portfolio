@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { Modal, List, Frame, Tree, Dropdown, Button } from "@react95/core";
+import {
+  Modal,
+  List,
+  Frame,
+  Tree,
+  Dropdown,
+  Button,
+  TitleBar,
+} from "@react95/core";
 import { Winpopup3 } from "@react95/icons";
 
 const getNormalImages = async () => {
@@ -93,6 +101,7 @@ export default function ArtsAndCrafts(props) {
                             src={image.src}
                             alt={image.label}
                             style={{ width: "15px" }}
+                            loading="lazy"
                           />
                         ),
                       })),
@@ -114,6 +123,7 @@ export default function ArtsAndCrafts(props) {
                             src={image.src}
                             alt={image.label}
                             style={{ width: "15px" }}
+                            loading="lazy"
                           />
                         ),
                       })),
@@ -185,14 +195,21 @@ export default function ArtsAndCrafts(props) {
           height="600px"
           icon={<Winpopup3 variant="16x16_4" />}
           title="Arts & Crafts"
-          defaultPosition={{
-            x: 80,
-            y: 5,
+          dragOptions={{
+            defaultPosition: {
+              x: 50,
+              y: 20,
+            },
           }}
-          onClose={handleCloseArtsAndCrafts}
-          onHelp={() => {
-            console.log("Help!");
-          }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert("Help!");
+              }}
+            />,
+            <TitleBar.Close key="close" onClick={handleCloseArtsAndCrafts} />,
+          ]}
           menu={[
             {
               name: (

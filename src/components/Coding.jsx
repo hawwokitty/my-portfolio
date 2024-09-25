@@ -8,28 +8,48 @@ import {
   Tab,
   Tabs,
   TitleBar,
-  Button
+  Button,
 } from "@react95/core";
 import { MystifyYourMind100 } from "@react95/icons";
 import DemoComp from "./DemoComp";
-// import { Button } from "react95";
+
+const videoFiles = import.meta.glob("/src/videos/*.mp4");
 
 export default function Coding(props) {
   const showCoding = props.show;
   const toggleShowCoding = props.toggle;
   const [showProject, setShowProject] = useState("");
   const [showDemoComp, toggleShowDemoComp] = useState(false);
+  const [videoUrl, setVideoUrl] = useState(null);
 
   const handleOpenDemoComp = () => toggleShowDemoComp(true);
 
   const handleCloseCoding = () => {
     toggleShowCoding(false);
     setShowProject("");
+    setVideoUrl(null);
   };
 
-  const handleProjectClick = (project) => {
+  const handleProjectClick = async (project) => {
     setShowProject(project);
-    // console.log(project);
+    console.log(project);
+    
+
+    if (project.demo) {
+      // Ensure the path matches the keys in videoFiles
+      const videoPath = `/${project.demo}`; // Add a leading slash to match the glob keys
+      console.log(videoPath); // Check if the path is correct
+  
+      const videoModule = await videoFiles[videoPath]?.(); // Load the video module
+      if (videoModule) {
+        const videoUrl = videoModule.default; // Get the video URL
+        setVideoUrl(videoUrl); // Set video URL
+        console.log(`Video found for path: ${videoPath}`);
+      } else {
+        console.log(`Video not found for path: ${videoPath}`);
+        setVideoUrl(null); // Handle the case where the video is not found
+      }
+    }
   };
 
   // Helper function to group projects from chat gpt
@@ -83,7 +103,7 @@ export default function Coding(props) {
       language: "C#",
       category: "",
       icon: "path/to/snake.jpg",
-      demo: "link here",
+      demo: "src/videos/snake.mp4",
     },
     {
       id: "flappyBird",
@@ -93,7 +113,17 @@ export default function Coding(props) {
       language: "C#",
       category: "",
       icon: "path/to/fb.jpg",
-      demo: "link here",
+      demo: "src/videos/flappyBird.mp4",
+    },
+    {
+      id: "frogger",
+      name: "Frogger",
+      description: "frogger bird in cmd",
+      github: "link here",
+      language: "C#",
+      category: "",
+      icon: "path/to/frogger.jpg",
+      demo: "src/videos/frogger.mp4",
     },
   ];
 
@@ -208,6 +238,14 @@ export default function Coding(props) {
                   <p>{showProject.description}</p>
                 </Tab>
                 <Tab title="Demo">
+                  {videoUrl ? (
+                    <video key={videoUrl} controls width="100%">
+                      <source src={videoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <p>This demo doesn't have a video</p>
+                  )}
                   <a
                     href={showProject.demo}
                     target="_blank"
@@ -228,12 +266,10 @@ export default function Coding(props) {
                 </Tab>
               </Tabs>
             </Frame>
-            
           </div>
         </Modal>
       )}
-      <DemoComp show={showDemoComp}
-        toggle={toggleShowDemoComp}/>
+      <DemoComp show={showDemoComp} toggle={toggleShowDemoComp} />
     </>
   );
 }

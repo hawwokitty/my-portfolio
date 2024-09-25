@@ -9,13 +9,15 @@ import {
   Mmsys113,
   Ie
 } from "@react95/icons";
-// import { ResizableBox } from "react-resizable";
-import Trailer from "./Trailer";
+
 
 export default function DemoComp(props) {
   const showDemoComp = props.show;
   const toggleShowDemoComp = props.toggle;
   const urlToShow = props.url;
+  const videoUrl = props.video;
+  console.log(urlToShow);
+  
 
   const handleCloseDemoComp = () => toggleShowDemoComp(false);
 
@@ -202,12 +204,17 @@ export default function DemoComp(props) {
             padding="$4"
           >
            
-              <iframe
-              src={urlToShow}
-              width="100%"
-              height="100%"
-            ></iframe>
               
+              {videoUrl ? (
+                    <video key={videoUrl} controls autoplay width="100%">
+                      <source src={videoUrl} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : <iframe
+                  src={urlToShow}
+                  width="100%"
+                  height="100%"
+                ></iframe>}
              
           </Frame>
         </Modal>

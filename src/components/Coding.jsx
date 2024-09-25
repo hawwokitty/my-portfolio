@@ -30,24 +30,30 @@ export default function Coding(props) {
     setVideoUrl(null);
   };
 
-  const handleProjectClick = async (project) => {
+  const handleProjectClick = (project) => {
     setShowProject(project);
-    console.log(project);
-    
-
-    if (project.demo) {
-      // Ensure the path matches the keys in videoFiles
-      const videoPath = `/${project.demo}`; // Add a leading slash to match the glob keys
-  
-      const videoModule = await videoFiles[videoPath]?.(); // Load the video module
-      if (videoModule) {
-        const videoUrl = videoModule.default; // Get the video URL
-        setVideoUrl(videoUrl); // Set video URL
-      } else {
-        setVideoUrl(null); // Handle the case where the video is not found
-      }
-    }
   };
+
+  // Use useEffect to load the video when the showProject changes
+  useEffect(() => {
+    const loadVideo = async () => {
+      if (showProject.demo) {
+        const videoPath = `/${showProject.demo}`; // Ensure correct path format
+        const videoModule = await videoFiles[videoPath]?.(); // Load the video module
+        if (videoModule) {
+          const videoUrl = videoModule.default; // Get the video URL
+          setVideoUrl(videoUrl); // Set video URL
+        } else {
+          // console.warn(`Video not found for path: ${videoPath}`);
+          setVideoUrl(null); // Handle the case where the video is not found
+        }
+      } else {
+        setVideoUrl(null); // No video for this project
+      }
+    };
+
+    loadVideo();
+  }, [showProject]); // Trigger useEffect whenever showProject changes
 
   // Helper function to group projects from chat gpt
   function groupProjectsByLanguageAndCategory(projects) {
@@ -79,7 +85,7 @@ export default function Coding(props) {
       github: "https://github.com/griminir/rate-my-cat",
       language: "JavaScript",
       category: "MVC",
-      icon: "path/to/rmc.jpg",
+      icon: "./js.png",
       demo: "https://hawwokitty.github.io/Copy-of-Rate-My-Cat/",
     },
     {
@@ -89,7 +95,7 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_academy/tree/main/api-key",
       language: "JavaScript",
       category: "MVC",
-      icon: "path/to/hearthstone.jpg",
+      icon: "./js.png",
       demo: "https://hawwokitty.github.io/get_academy/api-key/index.html",
     },
     {
@@ -99,7 +105,7 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_academy/tree/main/idle_game_cleanUp",
       language: "JavaScript",
       category: "",
-      icon: "path/to/catclicker.jpg",
+      icon: "./js.png",
       demo: "https://hawwokitty.github.io/get_academy/idle_game_cleanUp/index.html",
     },
     {
@@ -109,7 +115,7 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_academy/tree/main/nonogram",
       language: "JavaScript",
       category: "",
-      icon: "path/to/nonogram.jpg",
+      icon: "./js.png",
       demo: "https://hawwokitty.github.io/get_academy/nonogram/index.html",
     },
     {
@@ -119,7 +125,7 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_academy/tree/main/simon_says",
       language: "JavaScript",
       category: "",
-      icon: "path/to/simonsays.jpg",
+      icon: "./js.png",
       demo: "https://hawwokitty.github.io/get_academy/simon_says/index.html",
     },
     {
@@ -129,18 +135,18 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_academy/blob/main/slideshow/index2.html",
       language: "JavaScript",
       category: "",
-      icon: "path/to/slideshow.jpg",
+      icon: "./js.png",
       demo: "https://hawwokitty.github.io/get_academy/slideshow/index2.html",
     },
     {
       id: "been2",
       name: "Been 2",
-      description: "First fullstack project",
+      description: "First fullstack project, this doesnt have a demo yet",
       github: "https://github.com/hawwokitty/Get_emne_5/tree/main/been2_thirdtry",
       language: "JavaScript",
       category: "React",
-      icon: "path/to/been2.jpg",
-      demo: "link here",
+      icon: "./js.png",
+      demo: "no demo yet",
     },
     {
       id: "portfolio",
@@ -149,7 +155,7 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/my-portfolio",
       language: "JavaScript",
       category: "React",
-      icon: "path/to/portfolio.jpg",
+      icon: "./js.png",
       demo: "https://hawwokitty.github.io/my-portfolio/",
     },
     {
@@ -159,7 +165,7 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_cSharp/tree/main/Snake/Snake",
       language: "C#",
       category: "",
-      icon: "path/to/snake.jpg",
+      icon: "./cSharp.png",
       demo: "src/videos/snake.mp4",
     },
     {
@@ -169,7 +175,7 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_cSharp/tree/main/FlappyBird/FlappyBird",
       language: "C#",
       category: "",
-      icon: "path/to/fb.jpg",
+      icon: "./cSharp.png",
       demo: "src/videos/flappyBird.mp4",
     },
     {
@@ -179,8 +185,28 @@ export default function Coding(props) {
       github: "https://github.com/hawwokitty/get_cSharp/tree/main/Frogger/Frogger",
       language: "C#",
       category: "",
-      icon: "path/to/frogger.jpg",
+      icon: "./cSharp.png",
       demo: "src/videos/frogger.mp4",
+    },
+    {
+      id: "harrypotter",
+      name: "Hogwarts intro",
+      description: "A console app where you get into hogwarts or something",
+      github: "https://github.com/hawwokitty/get_cSharp/tree/main/HarryPotter/HarryPotter",
+      language: "C#",
+      category: "",
+      icon: "./cSharp.png",
+      demo: "src/videos/harrypotter.mp4",
+    },
+    {
+      id: "housedecor",
+      name: "House Decoration",
+      description: "A console app where you can decorate and paint some interior",
+      github: "https://github.com/hawwokitty/get_cSharp/tree/main/HouseDecoration/HouseDecoration",
+      language: "C#",
+      category: "",
+      icon: "./cSharp.png",
+      demo: "src/videos/housedecor.mp4",
     },
   ];
 
@@ -207,7 +233,7 @@ export default function Coding(props) {
                   children: projects.map((project) => ({
                     id: project.id,
                     label: project.name, // Use the full project name here
-                    icon: <img src={project.icon} alt={project.name} />, // Use the project icon
+                    icon: <img src={project.icon} alt={project.name} style={{height:"20px"}} />, // Use the project icon
                     onClick: () => handleProjectClick(project), // Pass the entire project object here
                   })),
                 })
@@ -295,14 +321,17 @@ export default function Coding(props) {
                   <p>{showProject.description}</p>
                 </Tab>
                 <Tab title="Demo">
-                  {videoUrl ? (
+                  {/* {videoUrl ? (
                     <video key={videoUrl} controls width="100%">
                       <source src={videoUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   ) : (
                     <p>This demo doesn't have a video</p>
-                  )}
+                  )} */}
+                  {videoUrl && (
+                    <p>This demo is a video:</p>
+                  ) }
                   {/* <a
                     href={showProject.demo}
                     target="_blank"
@@ -326,7 +355,7 @@ export default function Coding(props) {
           </div>
         </Modal>
       )}
-      <DemoComp show={showDemoComp} toggle={toggleShowDemoComp} url={showProject.demo}/>
+      <DemoComp show={showDemoComp} toggle={toggleShowDemoComp} url={showProject.demo} video={videoUrl}/>
     </>
   );
 }

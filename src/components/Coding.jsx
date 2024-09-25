@@ -38,15 +38,12 @@ export default function Coding(props) {
     if (project.demo) {
       // Ensure the path matches the keys in videoFiles
       const videoPath = `/${project.demo}`; // Add a leading slash to match the glob keys
-      console.log(videoPath); // Check if the path is correct
   
       const videoModule = await videoFiles[videoPath]?.(); // Load the video module
       if (videoModule) {
         const videoUrl = videoModule.default; // Get the video URL
         setVideoUrl(videoUrl); // Set video URL
-        console.log(`Video found for path: ${videoPath}`);
       } else {
-        console.log(`Video not found for path: ${videoPath}`);
         setVideoUrl(null); // Handle the case where the video is not found
       }
     }

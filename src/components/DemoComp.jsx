@@ -15,6 +15,7 @@ import Trailer from "./Trailer";
 export default function DemoComp(props) {
   const showDemoComp = props.show;
   const toggleShowDemoComp = props.toggle;
+  const urlToShow = props.url;
 
   const handleCloseDemoComp = () => toggleShowDemoComp(false);
 
@@ -33,7 +34,7 @@ export default function DemoComp(props) {
           dragOptions={{
             defaultPosition: {
               x: 25,
-              y: 0,
+              y: -20,
             },
           }}
           titleBarOptions={[
@@ -189,7 +190,7 @@ export default function DemoComp(props) {
           >
             <div className="address-bar">
               <span style={{ padding: "5px" }}>Address</span>
-              <Dropdown options={["temporarily just showing rate my cat"]} />
+              <Dropdown options={[urlToShow]} />
             </div>
           </Frame>
           <Frame
@@ -202,7 +203,7 @@ export default function DemoComp(props) {
           >
            
               <iframe
-              src="https://hawwokitty.github.io/Copy-of-Rate-My-Cat/"
+              src={urlToShow}
               width="100%"
               height="100%"
             ></iframe>

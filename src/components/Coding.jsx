@@ -93,6 +93,46 @@ export default function Coding(props) {
       demo: "https://hawwokitty.github.io/get_academy/api-key/index.html",
     },
     {
+      id: "catClicker",
+      name: "Cat Clicker",
+      description: "Simple idle clicker game",
+      github: "https://github.com/hawwokitty/get_academy/tree/main/idle_game_cleanUp",
+      language: "JavaScript",
+      category: "",
+      icon: "path/to/catclicker.jpg",
+      demo: "https://hawwokitty.github.io/get_academy/idle_game_cleanUp/index.html",
+    },
+    {
+      id: "nonogram",
+      name: "Nonogram",
+      description: "Simple nonogram",
+      github: "https://github.com/hawwokitty/get_academy/tree/main/nonogram",
+      language: "JavaScript",
+      category: "",
+      icon: "path/to/nonogram.jpg",
+      demo: "https://hawwokitty.github.io/get_academy/nonogram/index.html",
+    },
+    {
+      id: "simonSays",
+      name: "Simon Says",
+      description: "Simple simon says app",
+      github: "https://github.com/hawwokitty/get_academy/tree/main/simon_says",
+      language: "JavaScript",
+      category: "",
+      icon: "path/to/simonsays.jpg",
+      demo: "https://hawwokitty.github.io/get_academy/simon_says/index.html",
+    },
+    {
+      id: "slideshow",
+      name: "Slideshow",
+      description: "Simple slideshow",
+      github: "https://github.com/hawwokitty/get_academy/blob/main/slideshow/index2.html",
+      language: "JavaScript",
+      category: "",
+      icon: "path/to/slideshow.jpg",
+      demo: "https://hawwokitty.github.io/get_academy/slideshow/index2.html",
+    },
+    {
       id: "been2",
       name: "Been 2",
       description: "First fullstack project",
@@ -101,6 +141,16 @@ export default function Coding(props) {
       category: "React",
       icon: "path/to/been2.jpg",
       demo: "link here",
+    },
+    {
+      id: "portfolio",
+      name: "My portfolio",
+      description: "Literally the website you are on right now",
+      github: "https://github.com/hawwokitty/my-portfolio",
+      language: "JavaScript",
+      category: "React",
+      icon: "path/to/portfolio.jpg",
+      demo: "https://hawwokitty.github.io/my-portfolio/",
     },
     {
       id: "snake",
@@ -253,14 +303,14 @@ export default function Coding(props) {
                   ) : (
                     <p>This demo doesn't have a video</p>
                   )}
-                  <a
+                  {/* <a
                     href={showProject.demo}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Show Demo
+                    Show Demo in another tab
+                  </a> */}
                     <Button onClick={handleOpenDemoComp}>open demo</Button>
-                  </a>
                 </Tab>
                 <Tab title="GitHub">
                   <a
@@ -276,7 +326,7 @@ export default function Coding(props) {
           </div>
         </Modal>
       )}
-      <DemoComp show={showDemoComp} toggle={toggleShowDemoComp} />
+      <DemoComp show={showDemoComp} toggle={toggleShowDemoComp} url={showProject.demo}/>
     </>
   );
 }

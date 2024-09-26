@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Fieldset, Tabs, Tab, TitleBar } from "@react95/core";
 import { HelpBook } from "@react95/icons";
-import {Hourglass} from "react95";
+import { Hourglass } from "react95";
+import { useWindowSize } from "./WindowSizeContext";
 
 export default function ArtPrompt(props) {
   const [palette, setPalette] = useState([]);
@@ -9,6 +10,8 @@ export default function ArtPrompt(props) {
   const [loading, setLoading] = useState(false);
   const showHelp = props.show;
   const handleCloseHelp = props.toggle;
+
+  const windowSmall = useWindowSize();
 
   // Function to fetch color palette from the vercel backend
   const fetchPalette = async () => {
@@ -53,6 +56,10 @@ export default function ArtPrompt(props) {
     fetchEmoji();
   }, []);
 
+  // Define the default position
+  const screenW = window.innerWidth * 0.06; // Initial width 50% of screen
+  const screenH = -30;
+
   return (
     <>
       {showHelp && (
@@ -62,8 +69,8 @@ export default function ArtPrompt(props) {
           title="What should I draw?"
           dragOptions={{
             defaultPosition: {
-              x: 50,
-              y: 20,
+              x: screenW,
+              y: screenH,
             },
           }}
           titleBarOptions={[
@@ -96,44 +103,49 @@ export default function ArtPrompt(props) {
         >
           <Tabs width="400px" defaultActiveTab="Color Palette">
             <Tab title="Color Palette">
-              <p>
-                If you need ideas for what to draw, feel free to use the
-                generated color palette:
-              </p>
-              <Fieldset legend="Generated Color Palette">
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  {loading ? (palette.map((color, index) => (
-                    <div
-                      key={index}
-                      style={{ display: "flex", alignItems: "center" }}
-                    >
-                      <div
-                        style={{
-                          backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]})`, // Use the RGB values for the color
-                          width: "20px",
-                          height: "20px",
-                          margin: "5px",
-                          border: "1px solid #000",
-                        }}
-                      ></div>
-                      <p>{`RGB(${color[0]}, ${color[1]}, ${color[2]})`}</p>
-                    </div>
-                  ))) : (<Hourglass size={32} style={{ margin: 20 }} />)}
-                
-                </div>
-              </Fieldset>
-              <h4>How to use palette</h4>
-              <ul>
-                <li>Click the color you want to replace</li>
-                <li>Click "Colors" in the menu above</li>
-                <li>Click "Edit colors..."</li>
-                <li>Click "Define Custom Colors"</li>
-                <li>Click an empty custom color</li>
-                <li>Enter the RGB values</li>
-                <li>Click "Add To Custom Colors"</li>
-                <li>Click "Ok"</li>
-                <li>Do this for all the colors</li>
-              </ul>
+            <div style={windowSmall ? ({ height: (window.innerHeight * 0.7), overflow:"auto" }) : null}>
+                <p>
+                  If you need ideas for what to draw, feel free to use the
+                  generated color palette:
+                </p>
+                <Fieldset legend="Generated Color Palette">
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {loading ? (
+                      palette.map((color, index) => (
+                        <div
+                          key={index}
+                          style={{ display: "flex", alignItems: "center" }}
+                        >
+                          <div
+                            style={{
+                              backgroundColor: `rgb(${color[0]}, ${color[1]}, ${color[2]})`, // Use the RGB values for the color
+                              width: "20px",
+                              height: "20px",
+                              margin: "5px",
+                              border: "1px solid #000",
+                            }}
+                          ></div>
+                          <p>{`RGB(${color[0]}, ${color[1]}, ${color[2]})`}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <Hourglass size={32} style={{ margin: 20 }} />
+                    )}
+                  </div>
+                </Fieldset>
+                <h4>How to use palette</h4>
+                <ul>
+                  <li>Click the color you want to replace</li>
+                  <li>Click "Colors" in the menu above</li>
+                  <li>Click "Edit colors..."</li>
+                  <li>Click "Define Custom Colors"</li>
+                  <li>Click an empty custom color</li>
+                  <li>Enter the RGB values</li>
+                  <li>Click "Add To Custom Colors"</li>
+                  <li>Click "Ok"</li>
+                  <li>Do this for all the colors</li>
+                </ul>
+              </div>
             </Tab>
             <Tab title="Mood">
               <p>

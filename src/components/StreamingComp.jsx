@@ -10,22 +10,22 @@ import {
 } from "@react95/icons";
 // import { ResizableBox } from "react-resizable";
 import Trailer from "./Trailer";
+import { useWindowSize } from "./WindowSizeContext";
 
 export default function StreamingComp(props) {
   const showModal = props.show;
   const toggleShowModal = props.toggle;
 
-  const [contentSize, setContentSize] = useState({
-    width: 700,
-    height: 550,
-  });
+  // const [contentSize, setContentSize] = useState({
+  //   width: 700,
+  //   height: 550,
+  // });
 
-  // const handleResize = (event, { size }) => {
-  //   setContentSize({
-  //     width: size.width,
-  //     height: size.height,
-  //   });
-  // };
+  const windowSmall = useWindowSize();
+
+  // Define the default position
+  const screenW = window.innerWidth * 0.06; // Initial width 50% of screen
+  const screenH = -30;
 
   const handleCloseModal = () => toggleShowModal(false);
 
@@ -35,8 +35,8 @@ export default function StreamingComp(props) {
         <Modal
           className="resize"
           key="streaming-modal"
-          width={`${contentSize.width + 5}px`}
-          height={`${contentSize.height + 42}px`}
+          width="700px"
+          height={windowSmall ? "450px" : "550px"}
           icon={
             <img
               src="./twitch-no-bg.png"
@@ -47,8 +47,8 @@ export default function StreamingComp(props) {
           title="My Twitch"
           dragOptions={{
             defaultPosition: {
-              x: 200,
-              y: 0,
+              x: screenW,
+              y: screenH,
             },
           }}
           titleBarOptions={[
@@ -176,13 +176,21 @@ export default function StreamingComp(props) {
                 <Explore variant="32x32_4" style={{ height: "25px" }} />
                 <span>Search</span>
               </div>
-              <a href="https://www.youtube.com/@hawwokitty" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.youtube.com/@hawwokitty"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="streaming-icon" key="youtube-icon">
                   <Mplayer10 variant="32x32_4" style={{ height: "25px" }} />
                   <span>Youtube</span>
                 </div>
               </a>
-              <a href="https://www.twitch.tv/hawwokitty" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.twitch.tv/hawwokitty"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="streaming-icon" key="twitch-icon">
                   <Mmsys113 variant="32x32_4" style={{ height: "25px" }} />
                   <span>Twitch</span>
@@ -223,12 +231,14 @@ export default function StreamingComp(props) {
             bgColor="$material"
             boxShadow="$out"
             padding="$4"
+            overflow="auto"
           >
             <Frame
               key="streaming-frame-4"
               h="100%"
               bgColor="white"
               boxShadow="$in"
+              overflow="auto"
             >
               <div className="twitch-page">
                 <img

@@ -7,19 +7,20 @@ import {
   Mplayer10,
   Printer,
   Mmsys113,
-  Ie
+  Ie,
 } from "@react95/icons";
-
 
 export default function DemoComp(props) {
   const showDemoComp = props.show;
   const toggleShowDemoComp = props.toggle;
   const urlToShow = props.url;
   const videoUrl = props.video;
-  console.log(urlToShow);
-  
 
   const handleCloseDemoComp = () => toggleShowDemoComp(false);
+
+  // Define the default position
+  const screenW = window.innerWidth * 0.06; // Initial width 50% of screen
+  const screenH = -30;
 
   return (
     <>
@@ -29,14 +30,12 @@ export default function DemoComp(props) {
           key="demo-modal"
           width="90%"
           height="90%"
-          icon={
-            <Ie variant="16x16_8"/>
-          }
+          icon={<Ie variant="16x16_8" />}
           title="Demo"
           dragOptions={{
             defaultPosition: {
-              x: 25,
-              y: -20,
+              x: screenW,
+              y: screenH,
             },
           }}
           titleBarOptions={[
@@ -164,13 +163,21 @@ export default function DemoComp(props) {
                 <Explore variant="32x32_4" style={{ height: "25px" }} />
                 <span>Search</span>
               </div>
-              <a href="https://www.youtube.com/@hawwokitty" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.youtube.com/@hawwokitty"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="streaming-icon" key="youtube-icon">
                   <Mplayer10 variant="32x32_4" style={{ height: "25px" }} />
                   <span>Youtube</span>
                 </div>
               </a>
-              <a href="https://www.twitch.tv/hawwokitty" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.twitch.tv/hawwokitty"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="streaming-icon" key="twitch-icon">
                   <Mmsys113 variant="32x32_4" style={{ height: "25px" }} />
                   <span>Twitch</span>
@@ -202,20 +209,16 @@ export default function DemoComp(props) {
             bgColor="$material"
             boxShadow="$out"
             padding="$4"
+            overflow="auto"
           >
-           
-              
-              {videoUrl ? (
-                    <video key={videoUrl} controls autoplay width="100%">
-                      <source src={videoUrl} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  ) : <iframe
-                  src={urlToShow}
-                  width="100%"
-                  height="100%"
-                ></iframe>}
-             
+            {videoUrl ? (
+              <video key={videoUrl} controls autoplay width="100%">
+                <source src={videoUrl} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <iframe src={urlToShow} width="100%" height="100%"></iframe>
+            )}
           </Frame>
         </Modal>
       )}

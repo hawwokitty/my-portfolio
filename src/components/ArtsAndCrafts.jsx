@@ -9,10 +9,11 @@ import {
   TitleBar,
 } from "@react95/core";
 import { Winpopup3 } from "@react95/icons";
+import { useWindowSize } from "./WindowSizeContext";
 
 const getNormalImages = async () => {
   // Dynamically import all images from the folder
-  const images = import.meta.glob("../images/my-art/normal/*.{png,jpg,jpeg}");
+  const images = import.meta.glob("../images/my-art/normal/*.{png,jpg,jpeg}");  
 
   // Resolve image paths and return an array of image objects
   const imagePromises = Object.keys(images).map(async (key, index) => {
@@ -62,6 +63,10 @@ export default function ArtsAndCrafts(props) {
   const handleImageClick = (imageSrc) => {
     setImage(imageSrc);
   };
+
+    // Define the default position
+    const screenW = window.innerWidth * 0.06; // Initial width 50% of screen
+    const screenH =  -30;
 
   const [treeData, setTreeData] = useState([]);
 
@@ -186,19 +191,19 @@ export default function ArtsAndCrafts(props) {
 
     fetchImages();
   }, []);
-
+  const windowSmall = useWindowSize();
   return (
     <>
       {showArtsAndCrafts && (
         <Modal
           width="700px"
-          height="600px"
+          height={windowSmall ? "470px" : "600px"}
           icon={<Winpopup3 variant="16x16_4" />}
           title="Arts & Crafts"
           dragOptions={{
             defaultPosition: {
-              x: 50,
-              y: 20,
+              x: screenW,
+              y: screenH,
             },
           }}
           titleBarOptions={[
@@ -239,7 +244,10 @@ export default function ArtsAndCrafts(props) {
             },
           ]}
         >
-          <div className="arts-fields">
+          <div
+            className="arts-fields"
+            style={windowSmall ? { height: "90%" } : { height: "100%" }}
+          >
             <Frame
               w="100%"
               h="100%"
@@ -247,7 +255,7 @@ export default function ArtsAndCrafts(props) {
               boxShadow="$out"
               padding="$4"
             >
-              <Frame h="100%" bgColor="white" boxShadow="$in">
+              <Frame h="100%" bgColor="white" boxShadow="$in" overflow="auto">
                 <div className="arts-tree">
                   <Tree data={treeData} />
                 </div>

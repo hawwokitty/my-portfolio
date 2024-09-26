@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import {
   Modal,
   List,
@@ -8,9 +8,10 @@ import {
   Checkbox,
   ProgressBar,
   Avatar,
-  TitleBar
+  TitleBar,
 } from "@react95/core";
 import { New16 } from "@react95/icons";
+import { useWindowSize } from "./WindowSizeContext";
 
 export default function Resume(props) {
   const showResume = props.show;
@@ -18,6 +19,14 @@ export default function Resume(props) {
   const handleCloseResume = () => {
     toggleShowResume(false);
   };
+
+  const windowSmall = useWindowSize();
+  console.log(windowSmall);
+  
+
+  // Define the default position
+  const screenW = window.innerWidth * 0.04; // Initial width 50% of screen
+  const screenH = -30;
   return (
     <>
       {showResume && (
@@ -28,12 +37,19 @@ export default function Resume(props) {
           title="Resume"
           dragOptions={{
             defaultPosition: {
-              x: 100,
-              y: 20
-            }
-          }} titleBarOptions={[<TitleBar.Help key="help" onClick={() => {
-            alert('Help!');
-          }} />, <TitleBar.Close key="close" onClick={handleCloseResume} />]}
+              x: screenW,
+              y: screenH,
+            },
+          }}
+          titleBarOptions={[
+            <TitleBar.Help
+              key="help"
+              onClick={() => {
+                alert("Help!");
+              }}
+            />,
+            <TitleBar.Close key="close" onClick={handleCloseResume} />,
+          ]}
           // menu={[
           //   {
           //     name: (
@@ -66,7 +82,7 @@ export default function Resume(props) {
           <Tabs defaultActiveTab="About">
             <Tab title="About">
               <h3>Hi, I'm Kitty</h3>
-              <Avatar src="./profilbilde.jpg" alt="" size="140px"/>
+              <Avatar src="./profilbilde.jpg" alt="" size="140px" />
 
               <p>a Junior Fullstack Developer</p>
               <Fieldset legend="About me">
@@ -83,34 +99,38 @@ export default function Resume(props) {
             <Tab title="Education">
               <Fieldset legend="Programming">
                 <Checkbox readOnly checked={false}>
-                <b>IT- developer training</b> at Get Academy (2024 - now)
+                  <b>IT- developer training</b> at Get Academy (2024 - now)
                 </Checkbox>
                 <Checkbox readOnly checked>
-                <b>One year study in information processing</b> at The University of
-                  Southeast Norway (Achieved 2023)
+                  <b>One year study in information processing</b> at The
+                  University of Southeast Norway (Achieved 2023)
                 </Checkbox>
               </Fieldset>
               <Fieldset legend="Bachelor">
                 <Checkbox readOnly checked>
-                  <b>Bachelor in Asian and Middle Eastern Studies, Field: Chinese
-                  with China studies</b> at The University of Oslo (Achieved 2021)
+                  <b>
+                    Bachelor in Asian and Middle Eastern Studies, Field: Chinese
+                    with China studies
+                  </b>{" "}
+                  at The University of Oslo (Achieved 2021)
                 </Checkbox>
               </Fieldset>
             </Tab>
             <Tab title="Experience">
               <Fieldset legend="Manager and Organizer">
                 <Checkbox readOnly checked={false}>
-                <b>Yugicon</b>, a voluntary cosplay Organization, where a one-day
-                  conference is organized annually with about 100 participants
-                  (2016 - now)
+                  <b>Yugicon</b>, a voluntary cosplay Organization, where a
+                  one-day conference is organized annually with about 100
+                  participants (2016 - now)
                 </Checkbox>
                 <Checkbox readOnly checked={false}>
-                <b>Mega Minecraft Battle Royale</b>, a gaming event held once a month
-                  (2022 - now)
+                  <b>Mega Minecraft Battle Royale</b>, a gaming event held once
+                  a month (2022 - now)
                 </Checkbox>
               </Fieldset>
             </Tab>
             <Tab title="Skills">
+            <div style={windowSmall ? ({ height: (window.innerHeight * 0.7), overflow:"auto" }) : null}>
               <Fieldset legend="Personal Skills">
                 <Checkbox readOnly checked>
                   Teamwork
@@ -163,6 +183,7 @@ export default function Resume(props) {
                   <ProgressBar percent={56} width="200px" />
                 </ul>
               </Fieldset>
+              </div>
             </Tab>
           </Tabs>
         </Modal>

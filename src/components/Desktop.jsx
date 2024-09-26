@@ -31,7 +31,7 @@ export default function Desktop(props) {
         onDoubleClick={handleOpenTrash}
       >
         <Explorer108 variant="32x32_4" />
-        <p>Trash</p>
+        <p>Recycle Bin</p>
       </div>
       <div
         className={activeIcon === 2 ? "active-icon" : "inactive-icon"}

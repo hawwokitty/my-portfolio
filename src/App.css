@@ -64,7 +64,7 @@ body {
 
 .arts-fields {
   display: flex;
-  height: 100%;
+  /* height: 90%; */
 }
 
 .arts-picture-text {
@@ -74,7 +74,6 @@ body {
 
 .arts-img-div {
   width: 100%;
-  height: 0;
   padding-top: 100%;
   position: relative;
   overflow: hidden;
@@ -88,7 +87,7 @@ body {
     -50%
   ); /* Pull it back by 50% of its width to center it */
   width: 95%;
-  height: 100%;
+  height: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,12 +102,11 @@ body {
 
 .arts-tree {
   width: 100%;
-  height: 540px;
   overflow: auto;
 }
 
 .arts-bg-button {
-  margin: 10px;
+  margin-left: 10px;
 }
 
 .resume-skills {
@@ -127,3 +125,4 @@ body {
 .contact-info {
   padding: 15px;
 }
+

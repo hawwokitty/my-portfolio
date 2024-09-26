@@ -12,6 +12,7 @@ import {
 } from "@react95/core";
 import { MystifyYourMind100 } from "@react95/icons";
 import DemoComp from "./DemoComp";
+import { useWindowSize } from "./WindowSizeContext";
 
 const videoFiles = import.meta.glob("/src/videos/*.mp4");
 
@@ -23,6 +24,8 @@ export default function Coding(props) {
   const [videoUrl, setVideoUrl] = useState(null);
 
   const handleOpenDemoComp = () => toggleShowDemoComp(true);
+
+  const windowSmall = useWindowSize();
 
   const handleCloseCoding = () => {
     toggleShowCoding(false);
@@ -102,7 +105,8 @@ export default function Coding(props) {
       id: "catClicker",
       name: "Cat Clicker",
       description: "Simple idle clicker game",
-      github: "https://github.com/hawwokitty/get_academy/tree/main/idle_game_cleanUp",
+      github:
+        "https://github.com/hawwokitty/get_academy/tree/main/idle_game_cleanUp",
       language: "JavaScript",
       category: "",
       icon: "./js.png",
@@ -132,7 +136,8 @@ export default function Coding(props) {
       id: "slideshow",
       name: "Slideshow",
       description: "Simple slideshow",
-      github: "https://github.com/hawwokitty/get_academy/blob/main/slideshow/index2.html",
+      github:
+        "https://github.com/hawwokitty/get_academy/blob/main/slideshow/index2.html",
       language: "JavaScript",
       category: "",
       icon: "./js.png",
@@ -142,7 +147,8 @@ export default function Coding(props) {
       id: "been2",
       name: "Been 2",
       description: "First fullstack project, this doesnt have a demo yet",
-      github: "https://github.com/hawwokitty/Get_emne_5/tree/main/been2_thirdtry",
+      github:
+        "https://github.com/hawwokitty/Get_emne_5/tree/main/been2_thirdtry",
       language: "JavaScript",
       category: "React",
       icon: "./js.png",
@@ -172,7 +178,8 @@ export default function Coding(props) {
       id: "flappyBird",
       name: "Flappy Bird",
       description: "flappy bird in cmd",
-      github: "https://github.com/hawwokitty/get_cSharp/tree/main/FlappyBird/FlappyBird",
+      github:
+        "https://github.com/hawwokitty/get_cSharp/tree/main/FlappyBird/FlappyBird",
       language: "C#",
       category: "",
       icon: "./cSharp.png",
@@ -182,7 +189,8 @@ export default function Coding(props) {
       id: "frogger",
       name: "Frogger",
       description: "frogger bird in cmd",
-      github: "https://github.com/hawwokitty/get_cSharp/tree/main/Frogger/Frogger",
+      github:
+        "https://github.com/hawwokitty/get_cSharp/tree/main/Frogger/Frogger",
       language: "C#",
       category: "",
       icon: "./cSharp.png",
@@ -192,7 +200,8 @@ export default function Coding(props) {
       id: "harrypotter",
       name: "Hogwarts intro",
       description: "A console app where you get into hogwarts or something",
-      github: "https://github.com/hawwokitty/get_cSharp/tree/main/HarryPotter/HarryPotter",
+      github:
+        "https://github.com/hawwokitty/get_cSharp/tree/main/HarryPotter/HarryPotter",
       language: "C#",
       category: "",
       icon: "./cSharp.png",
@@ -201,8 +210,10 @@ export default function Coding(props) {
     {
       id: "housedecor",
       name: "House Decoration",
-      description: "A console app where you can decorate and paint some interior",
-      github: "https://github.com/hawwokitty/get_cSharp/tree/main/HouseDecoration/HouseDecoration",
+      description:
+        "A console app where you can decorate and paint some interior",
+      github:
+        "https://github.com/hawwokitty/get_cSharp/tree/main/HouseDecoration/HouseDecoration",
       language: "C#",
       category: "",
       icon: "./cSharp.png",
@@ -233,7 +244,13 @@ export default function Coding(props) {
                   children: projects.map((project) => ({
                     id: project.id,
                     label: project.name, // Use the full project name here
-                    icon: <img src={project.icon} alt={project.name} style={{height:"20px"}} />, // Use the project icon
+                    icon: (
+                      <img
+                        src={project.icon}
+                        alt={project.name}
+                        style={{ height: "20px" }}
+                      />
+                    ), // Use the project icon
                     onClick: () => handleProjectClick(project), // Pass the entire project object here
                   })),
                 })
@@ -245,18 +262,22 @@ export default function Coding(props) {
     },
   ];
 
+  // Define the default position
+  const screenW = window.innerWidth * 0.08; // Initial width 50% of screen
+  const screenH = -30;
+
   return (
     <>
       {showCoding && (
         <Modal
           width="700px"
-          height="600px"
+          height={windowSmall ? "400px" : "600px"}
           icon={<MystifyYourMind100 variant="16x16_4" />}
           title="Coding"
           dragOptions={{
             defaultPosition: {
-              x: 350,
-              y: 20,
+              x: screenW,
+              y: screenH,
             },
           }}
           titleBarOptions={[
@@ -297,7 +318,10 @@ export default function Coding(props) {
             },
           ]}
         >
-          <div className="arts-fields">
+          <div
+            className="arts-fields"
+            style={windowSmall ? { height: "90%" } : { height: "100%" }}
+          >
             <Frame
               w="100%"
               h="100%"
@@ -305,10 +329,8 @@ export default function Coding(props) {
               boxShadow="$out"
               padding="$4"
             >
-              <Frame h="100%" bgColor="white" boxShadow="$in">
-                <div className="arts-tree">
-                  <Tree data={treeStructure} />
-                </div>
+              <Frame h="100%" bgColor="white" boxShadow="$in" overflow="auto">
+                <Tree data={treeStructure} />
               </Frame>
             </Frame>
             <Frame w="100%" h="100%" bgColor="$material" boxShadow="$in">
@@ -329,9 +351,7 @@ export default function Coding(props) {
                   ) : (
                     <p>This demo doesn't have a video</p>
                   )} */}
-                  {videoUrl && (
-                    <p>This demo is a video:</p>
-                  ) }
+                  {videoUrl && <p>This demo is a video:</p>}
                   {/* <a
                     href={showProject.demo}
                     target="_blank"
@@ -339,7 +359,7 @@ export default function Coding(props) {
                   >
                     Show Demo in another tab
                   </a> */}
-                    <Button onClick={handleOpenDemoComp}>open demo</Button>
+                  <Button onClick={handleOpenDemoComp}>open demo</Button>
                 </Tab>
                 <Tab title="GitHub">
                   <a
@@ -355,7 +375,12 @@ export default function Coding(props) {
           </div>
         </Modal>
       )}
-      <DemoComp show={showDemoComp} toggle={toggleShowDemoComp} url={showProject.demo} video={videoUrl}/>
+      <DemoComp
+        show={showDemoComp}
+        toggle={toggleShowDemoComp}
+        url={showProject.demo}
+        video={videoUrl}
+      />
     </>
   );
 }

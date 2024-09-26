@@ -7,6 +7,7 @@ import ArtsAndCrafts from "./components/ArtsAndCrafts";
 import Resume from "./components/Resume";
 import Contact from "./components/Contact";
 import Coding from "./components/Coding";
+import WindowSizeProvider from "./components/WindowSizeContext";
 
 import { useState } from "react";
 
@@ -29,8 +30,10 @@ function App() {
   const handleShowHelp = () => toggleShowHelp(true);
   const handleCloseHelp = () => toggleShowHelp(false);
 
+ 
   return (
     <>
+    <WindowSizeProvider>
       <TaskBarComp />
       <Desktop
         openPaint={handleOpenPaint}
@@ -63,6 +66,7 @@ function App() {
         toggle={toggleShowCoding}
       />
       {showHelp && <ArtPrompt show={showHelp} toggle={handleCloseHelp} />}
+      </WindowSizeProvider>
     </>
   );
 }

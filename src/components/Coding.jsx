@@ -84,7 +84,8 @@ export default function Coding(props) {
     {
       id: "rateMyCat",
       name: "Rate My Cat",
-      description: "First full mvc project done with others",
+      description:
+        "This is a SoMe-style cat rating app. Front-end single page application. This was my first time working on a coding project with other people, and i had such a good time. We were all pretty new to JavaScript while making this, so it's not perfect. The logo and background is also made by me.",
       github: "https://github.com/griminir/rate-my-cat",
       language: "JavaScript",
       category: "MVC",
@@ -94,7 +95,8 @@ export default function Coding(props) {
     {
       id: "hearthstoneDeckBuilder",
       name: "Hearthstone Battlegrounds Deck Builder",
-      description: "First time using an API key",
+      description:
+        "This is a really simple deck builder for the game 'Hearthstone Battlegrounds'. It doesn't have much CSS, as the whole point of this project was to learn how to use an API. It takes a second to load the cards once you click 'Find cards'.",
       github: "https://github.com/hawwokitty/get_academy/tree/main/api-key",
       language: "JavaScript",
       category: "MVC",
@@ -104,7 +106,8 @@ export default function Coding(props) {
     {
       id: "catClicker",
       name: "Cat Clicker",
-      description: "Simple idle clicker game",
+      description:
+        "Simple idle clicker game, like cookie clicker but with cats :3",
       github:
         "https://github.com/hawwokitty/get_academy/tree/main/idle_game_cleanUp",
       language: "JavaScript",
@@ -135,7 +138,7 @@ export default function Coding(props) {
     {
       id: "slideshow",
       name: "Slideshow",
-      description: "Simple slideshow",
+      description: "Simple slideshow, with sliding animations",
       github:
         "https://github.com/hawwokitty/get_academy/blob/main/slideshow/index2.html",
       language: "JavaScript",
@@ -146,7 +149,8 @@ export default function Coding(props) {
     {
       id: "been2",
       name: "Been 2",
-      description: "First fullstack project, this doesnt have a demo yet",
+      description:
+        "First fullstack project, this doesnt have a demo yet. I used React, node.js, express and msSQL for the database. It's a website to track which countries and capital cities you've visited.",
       github:
         "https://github.com/hawwokitty/Get_emne_5/tree/main/been2_thirdtry",
       language: "JavaScript",
@@ -157,7 +161,20 @@ export default function Coding(props) {
     {
       id: "portfolio",
       name: "My portfolio",
-      description: "Literally the website you are on right now",
+      description: (
+        <>
+          Literally the website you are on right now. It's made using React, and
+          specifically{" "}
+          <a
+            href="https://github.com/React95/React95"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            this
+          </a>{" "}
+          library
+        </>
+      ),
       github: "https://github.com/hawwokitty/my-portfolio",
       language: "JavaScript",
       category: "React",
@@ -167,7 +184,7 @@ export default function Coding(props) {
     {
       id: "snake",
       name: "Snake",
-      description: "snake in cmd",
+      description: "Snake, the game, playable in the terminal",
       github: "https://github.com/hawwokitty/get_cSharp/tree/main/Snake/Snake",
       language: "C#",
       category: "",
@@ -177,7 +194,7 @@ export default function Coding(props) {
     {
       id: "flappyBird",
       name: "Flappy Bird",
-      description: "flappy bird in cmd",
+      description: "Flappy bird (or rather, butterfly), the game, playable in the terminal",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/FlappyBird/FlappyBird",
       language: "C#",
@@ -188,7 +205,7 @@ export default function Coding(props) {
     {
       id: "frogger",
       name: "Frogger",
-      description: "frogger bird in cmd",
+      description: "Frogger, the game, playable in the terminal",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/Frogger/Frogger",
       language: "C#",
@@ -199,7 +216,7 @@ export default function Coding(props) {
     {
       id: "harrypotter",
       name: "Hogwarts intro",
-      description: "A console app where you get into hogwarts or something",
+      description: "A console application that let's you 'get into' Hogwarts, in a way!",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/HarryPotter/HarryPotter",
       language: "C#",
@@ -211,7 +228,7 @@ export default function Coding(props) {
       id: "housedecor",
       name: "House Decoration",
       description:
-        "A console app where you can decorate and paint some interior",
+        "A console application where you can decorate and paint some interior",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/HouseDecoration/HouseDecoration",
       language: "C#",

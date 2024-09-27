@@ -30,42 +30,39 @@ function App() {
   const handleShowHelp = () => toggleShowHelp(true);
   const handleCloseHelp = () => toggleShowHelp(false);
 
- 
   return (
     <>
-    <WindowSizeProvider>
-      <TaskBarComp />
-      <Desktop
-        openPaint={handleOpenPaint}
-        openStreaming={handleOpenStreaming}
-        openArts={handleOpenArtsAndCrafts}
-        openResume={handleOpenResume}
-        openContact={handleOpenContact}
-        openCoding={handleOpenCoding}
-      />
-      <PaintComp
-        show={showPaint}
-        toggle={toggleShowPaint}
-        onHelp={handleShowHelp}
-      />
-      <StreamingComp show={showStreaming} toggle={toggleShowStreaming} />
-      <ArtsAndCrafts
-        show={showArtsAndCrafts}
-        toggle={toggleShowArtsAndCrafts}
-      />
-      <Resume
-        show={showResume}
-        toggle={toggleShowResume}
-      />
-      <Contact
-        show={showContact}
-        toggle={toggleShowContact}
-      />
-      <Coding
-        show={showCoding}
-        toggle={toggleShowCoding}
-      />
-      {showHelp && <ArtPrompt show={showHelp} toggle={handleCloseHelp} />}
+      <WindowSizeProvider>
+        <TaskBarComp
+          openPaint={handleOpenPaint}
+          openStreaming={handleOpenStreaming}
+          openArts={handleOpenArtsAndCrafts}
+          openResume={handleOpenResume}
+          openContact={handleOpenContact}
+          openCoding={handleOpenCoding}
+        />
+        <Desktop
+          openPaint={handleOpenPaint}
+          openStreaming={handleOpenStreaming}
+          openArts={handleOpenArtsAndCrafts}
+          openResume={handleOpenResume}
+          openContact={handleOpenContact}
+          openCoding={handleOpenCoding}
+        />
+        <PaintComp
+          show={showPaint}
+          toggle={toggleShowPaint}
+          onHelp={handleShowHelp}
+        />
+        <StreamingComp show={showStreaming} toggle={toggleShowStreaming} />
+        <ArtsAndCrafts
+          show={showArtsAndCrafts}
+          toggle={toggleShowArtsAndCrafts}
+        />
+        <Resume show={showResume} toggle={toggleShowResume} />
+        <Contact show={showContact} toggle={toggleShowContact} />
+        <Coding show={showCoding} toggle={toggleShowCoding} />
+        {showHelp && <ArtPrompt show={showHelp} toggle={handleCloseHelp} />}
       </WindowSizeProvider>
     </>
   );

@@ -33,6 +33,7 @@ export default function PaintComp(props) {
           }}
           titleBarOptions={[
             <TitleBar.Help key="help" onClick={handleShowHelp} />,
+            // <TitleBar.Minimize />,
             <TitleBar.Close key="close" onClick={handleClosePaint} />,
           ]}
         >

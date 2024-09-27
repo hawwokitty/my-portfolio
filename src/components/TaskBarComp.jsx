@@ -1,99 +1,100 @@
 import { useState } from "react";
 import { Modal, TaskBar, List } from "@react95/core";
 import {
-  WindowsExplorer,
-  ReaderClosed,
+  Gcdef100,
   FolderExe2,
-  FolderExe,
-  MicrosoftExchange,
-  MsDos,
-  MicrosoftNetwork,
-  FolderFile,
-  Settings,
-  FolderSettings,
-  FolderPrint,
-  FileFind,
+  MsawtAwtIcon,
+  Pen,
+  Wordpad,
   HelpBook,
-  LoaderBat,
   Computer3,
+  Awfxcg321304,
+  Winpopup3,
+  MsDos,
+  Awfxcg321303,
+  Grpconv100,
 } from "@react95/icons";
 
-function TaskBarComp() {
-  const [first, toggleFirst] = useState(false);
-  const [second, toggleSecond] = useState(false);
-  const closeFirst = () => toggleFirst(false);
-  const closeSecond = () => toggleSecond(false);
-
+function TaskBarComp(props) {
+  const handleOpenPaint = props.openPaint;
+  const handleOpenStreaming = props.openStreaming;
+  const handleOpenCoding = props.openCoding;
+  const handleOpenArtsAndCrafts = props.openArts;
+  const handleOpenResume = props.openResume;
+  const handleOpenContact = props.openContact;
   return (
     <>
-      {first && (
-        <Modal
-          icon={<WindowsExplorer variant="16x16_4" />}
-          title="Windows Explorer"
-          onClose={closeFirst}
-          width="300px"
-          height="200px"
-        />
-      )}
-
-      {second && (
-        <Modal
-          defaultPosition={{
-            x: 50,
-            y: 50,
-          }}
-          width="300px"
-          height="200px"
-          icon={<ReaderClosed variant="16x16_4" />}
-          title="Local Disk (C:)"
-          onClose={closeSecond}
-        />
-      )}
-
       <TaskBar
         list={
           <List>
             <List.Item
-              icon={<ReaderClosed variant="32x32_4" />}
-              onClick={() => toggleSecond(true)}
+              icon={
+                <img
+                  src="./github-logo.png"
+                  alt="Github"
+                  style={{
+                    width: "32px",
+                    marginLeft: "-20px",
+                    marginRight: "10px",
+                  }}
+                  />
+                }
+                onClick={() => window.open("https://github.com/hawwokitty/my-portfolio", "_blank")}
             >
-              Local Disk (C:)
-            </List.Item>
-            <List.Item
-              icon={<WindowsExplorer variant="32x32_4" />}
-              onClick={() => {
-                toggleFirst(true);
-              }}
-            >
-              Windows Explorer
+              Source Code
             </List.Item>
             <List.Item icon={<FolderExe2 variant="32x32_4" />}>
               Programs
               <List width={"200px"}>
-                <List.Item icon={<FolderExe variant="16x16_4" />}>
-                  Accessories
+                <List.Item
+                  icon={<Winpopup3 variant="16x16_4" />}
+                  onClick={handleOpenArtsAndCrafts}
+                >
+                  Arts & Crafts
                 </List.Item>
-                <List.Item icon={<FolderExe variant="16x16_4" />}>
-                  StartUp
+                <List.Item
+                  icon={<MsawtAwtIcon variant="16x16_4" />}
+                  onClick={handleOpenCoding}
+                >
+                  Coding
                 </List.Item>
-                <List.Item icon={<MicrosoftExchange variant="16x16_4" />}>
-                  Microsoft Exchange
+                <List.Item
+                  icon={<Awfxcg321304 variant="16x16_4" />}
+                  onClick={handleOpenContact}
+                >
+                  Contact
                 </List.Item>
-                <List.Item icon={<MsDos variant="16x16_32" />}>
-                  MS-DOS Prompt
+                <List.Item
+                  icon={<Pen variant="16x16_4" />}
+                  onClick={handleOpenPaint}
+                >
+                  Paint
                 </List.Item>
-                <List.Item icon={<MicrosoftNetwork variant="16x16_4" />}>
-                  The Microsoft Network
+                <List.Item
+                  icon={<Wordpad variant="16x16_4" />}
+                  onClick={handleOpenResume}
+                >
+                  Resume
                 </List.Item>
-                <List.Item icon={<WindowsExplorer variant="16x16_4" />}>
-                  Windows Explorer
+                <List.Item
+                  icon={<Gcdef100 variant="16x16_4" />}
+                  onClick={handleOpenStreaming}
+                >
+                  Streaming
                 </List.Item>
               </List>
             </List.Item>
-            <List.Item icon={<FolderFile variant="32x32_4" />}>
-              Documents
+            <List.Item icon={<Awfxcg321303 variant="32x32_4" />}>
+              Credit
             </List.Item>
-            <List.Item icon={<Settings variant="32x32_4" />}>
+            <List.Item icon={<MsDos variant="32x32_32" />}>
+              MS-DOS Prompt
+            </List.Item>
+
+            {/* <List.Item icon={<FolderFile variant="32x32_4" />}>
+              Documents
+            </List.Item> */}
+            {/* <List.Item icon={<Settings variant="32x32_4" />}>
               Settings
               <List width={"200px"}>
                 <List.Item icon={<FolderSettings variant="16x16_4" />}>
@@ -103,10 +104,11 @@ function TaskBarComp() {
                   Printers
                 </List.Item>
               </List>
-            </List.Item>
-            <List.Item icon={<FileFind variant="32x32_4" />}>Find</List.Item>
+            </List.Item> */}
+            {/* <List.Item icon={<FileFind variant="32x32_4" />}>Find</List.Item> */}
             <List.Item icon={<HelpBook variant="32x32_4" />}>Help</List.Item>
-            <List.Item icon={<LoaderBat variant="32x32_4" />}>Run...</List.Item>
+
+            {/* <List.Item icon={<LoaderBat variant="32x32_4" />}>Run...</List.Item> */}
             <List.Divider />
             <List.Item icon={<Computer3 variant="32x32_4" />}>
               Shut Down...

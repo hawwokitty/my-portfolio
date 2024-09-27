@@ -8,6 +8,7 @@ import Resume from "./components/Resume";
 import Contact from "./components/Contact";
 import Coding from "./components/Coding";
 import WindowSizeProvider from "./components/WindowSizeContext";
+import RecycleBin from "./components/RecycleBin";
 
 import { useState } from "react";
 
@@ -19,6 +20,7 @@ function App() {
   const [showResume, toggleShowResume] = useState(false);
   const [showContact, toggleShowContact] = useState(false);
   const [showCoding, toggleShowCoding] = useState(false);
+  const [showRecycleBin, toggleShowRecycleBin] = useState(false);
 
   const handleOpenArtsAndCrafts = () => toggleShowArtsAndCrafts(true);
   const handleOpenPaint = () => toggleShowPaint(true);
@@ -26,6 +28,7 @@ function App() {
   const handleOpenResume = () => toggleShowResume(true);
   const handleOpenContact = () => toggleShowContact(true);
   const handleOpenCoding = () => toggleShowCoding(true);
+  const handleOpenRecycleBin = () => toggleShowRecycleBin(true);
 
   const handleShowHelp = () => toggleShowHelp(true);
   const handleCloseHelp = () => toggleShowHelp(false);
@@ -48,6 +51,7 @@ function App() {
           openResume={handleOpenResume}
           openContact={handleOpenContact}
           openCoding={handleOpenCoding}
+          openRecycleBin={handleOpenRecycleBin}
         />
         <PaintComp
           show={showPaint}
@@ -62,6 +66,7 @@ function App() {
         <Resume show={showResume} toggle={toggleShowResume} />
         <Contact show={showContact} toggle={toggleShowContact} />
         <Coding show={showCoding} toggle={toggleShowCoding} />
+        <RecycleBin show={showRecycleBin} toggle={toggleShowRecycleBin} />
         {showHelp && <ArtPrompt show={showHelp} toggle={handleCloseHelp} />}
       </WindowSizeProvider>
     </>

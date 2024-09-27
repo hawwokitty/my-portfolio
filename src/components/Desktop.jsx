@@ -14,7 +14,7 @@ export default function Desktop(props) {
   const handleOpenStreaming = props.openStreaming;
   const [activeIcon, setActiveIcon] = useState(null);
   const handleOpenCoding = props.openCoding;
-  const handleOpenTrash = props.openTrash;
+  const handleOpenRecycleBin = props.openRecycleBin;
   const handleOpenArtsAndCrafts = props.openArts;
   const handleOpenResume = props.openResume;
   const handleOpenContact = props.openContact;
@@ -28,7 +28,7 @@ export default function Desktop(props) {
       <div
         className={activeIcon === 1 ? "active-icon" : "inactive-icon"}
         onClick={() => handleToggleIcon(1)}
-        onDoubleClick={handleOpenTrash}
+        onDoubleClick={handleOpenRecycleBin}
       >
         <Explorer108 variant="32x32_4" />
         <p>Recycle Bin</p>

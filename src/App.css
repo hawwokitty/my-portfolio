@@ -126,3 +126,20 @@ body {
   padding: 15px;
 }
 
+.rc-flex-container {
+  display: flex;
+}
+
+.rc-list {
+  display: flex;
+  user-select: none;
+}
+
+.rc-item {
+  width: 100%;
+}
+
+.rc-list-span {
+  display: inline-block;
+  padding-top: 5px;
+}

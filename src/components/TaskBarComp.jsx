@@ -4,7 +4,7 @@ import {
   Gcdef100,
   FolderExe2,
   MsawtAwtIcon,
-  Pen,
+  Mspaint,
   Wordpad,
   HelpBook,
   Computer3,
@@ -65,7 +65,7 @@ function TaskBarComp(props) {
                   Contact
                 </List.Item>
                 <List.Item
-                  icon={<Pen variant="16x16_4" />}
+                  icon={<Mspaint variant="16x16_4"/>}
                   onClick={handleOpenPaint}
                 >
                   Paint

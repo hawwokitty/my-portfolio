@@ -136,6 +136,7 @@ body {
 }
 
 .rc-item {
+  min-width: 180px;
   width: 100%;
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Frame, TitleBar, List } from "@react95/core";
-import { RecycleFull, Shell322 } from "@react95/icons";
+import { RecycleFull, Shell322, Wangimg129 } from "@react95/icons";
 import { useWindowSize } from "./WindowSizeContext";
 
 export default function RecycleBin(props) {
@@ -75,7 +75,7 @@ export default function RecycleBin(props) {
                   w="100%"
                   bgColor="$material"
                   boxShadow="$out"
-                  style={{ padding: "4px" }}
+                  style={{ padding: "4px", minWidth: "180px" }}
                 >
                   Name
                 </Frame>
@@ -84,7 +84,7 @@ export default function RecycleBin(props) {
                   w="100%"
                   bgColor="$material"
                   boxShadow="$out"
-                  style={{ padding: "4px" }}
+                  style={{ padding: "4px", minWidth: "150px" }}
                 >
                   Type
                 </Frame>
@@ -93,7 +93,7 @@ export default function RecycleBin(props) {
                   w="100%"
                   bgColor="$material"
                   boxShadow="$out"
-                  style={{ padding: "4px" }}
+                  style={{ padding: "4px", minWidth: "100px" }}
                 >
                   Total Size
                 </Frame>
@@ -104,10 +104,10 @@ export default function RecycleBin(props) {
                   <span className="rc-list-span">Resume-copy</span>
                 </div>
                 <div className="rc-item">
-                  <span className="rc-list-span">Document</span>
+                  <span className="rc-list-span">PDF Document</span>
                 </div>
                 <div className="rc-item">
-                  <span className="rc-list-span">23 KB</span>
+                  <span className="rc-list-span">1588 KB</span>
                 </div>
               </div>
               <div className="rc-list">
@@ -116,10 +116,58 @@ export default function RecycleBin(props) {
                   <span className="rc-list-span">Resume-copy-copy</span>
                 </div>
                 <div className="rc-item">
-                  <span className="rc-list-span">Document</span>
+                  <span className="rc-list-span">PDF Document</span>
                 </div>
                 <div className="rc-item">
-                  <span className="rc-list-span">25 KB</span>
+                  <span className="rc-list-span">1596 KB</span>
+                </div>
+              </div>
+              <div className="rc-list">
+                <div className="rc-item">
+                  <Shell322 variant="16x16_4" className="rc-list-span"/>
+                  <span className="rc-list-span">Resume-final</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">PDF Document</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">1612 KB</span>
+                </div>
+              </div>
+              <div className="rc-list">
+                <div className="rc-item">
+                  <Shell322 variant="16x16_4" className="rc-list-span"/>
+                  <span className="rc-list-span">Resume-final-2024</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">PDF Document</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">1613 KB</span>
+                </div>
+              </div>
+              <div className="rc-list">
+                <div className="rc-item">
+                <Wangimg129 variant="16x16_4" className="rc-list-span"/>
+                  <span className="rc-list-span">Screenshot_20240927_123945</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">JPG File</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">257 KB</span>
+                </div>
+              </div>
+              <div className="rc-list">
+                <div className="rc-item">
+                <Wangimg129 variant="16x16_4" className="rc-list-span"/>
+                  <span className="rc-list-span">Screenshot_20240912_431256</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">JPG File</span>
+                </div>
+                <div className="rc-item">
+                  <span className="rc-list-span">203 KB</span>
                 </div>
               </div>
             </Frame>

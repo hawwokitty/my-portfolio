@@ -85,7 +85,7 @@ export default function Coding(props) {
       id: "rateMyCat",
       name: "Rate My Cat",
       description:
-        "This is a SoMe-style cat rating app. Front-end single page application. This was my first time working on a coding project with other people, and i had such a good time. We were all pretty new to JavaScript while making this, so it's not perfect. The logo and background is also made by me.",
+        "This is a SoMe-style cat rating app. It's a front-end single-page application, and it was my first time collaborating with other developers on a project. We were all still pretty fresh with JavaScript at the time, so it’s definitely not perfect, but we had a blast making it! Oh, and I also designed the logo and background, because why not?",
       github: "https://github.com/griminir/rate-my-cat",
       language: "JavaScript",
       category: "MVC",
@@ -96,7 +96,7 @@ export default function Coding(props) {
       id: "hearthstoneDeckBuilder",
       name: "Hearthstone Battlegrounds Deck Builder",
       description:
-        "This is a really simple deck builder for the game 'Hearthstone Battlegrounds'. It doesn't have much CSS, as the whole point of this project was to learn how to use an API. It takes a second to load the cards once you click 'Find cards'.",
+        "A super simple deck builder for 'Hearthstone Battlegrounds'. The design is minimalistic because the goal here was to learn how to use an API. Just a heads-up: it might take a second for the cards to load after you click 'Find cards', but hey, it's a work in progress!",
       github: "https://github.com/hawwokitty/get_academy/tree/main/api-key",
       language: "JavaScript",
       category: "MVC",
@@ -107,7 +107,7 @@ export default function Coding(props) {
       id: "catClicker",
       name: "Cat Clicker",
       description:
-        "Simple idle clicker game, like cookie clicker but with cats :3",
+        "Ever heard of Cookie Clicker? Well, this is basically that... but with cats! :3 Just a cute, simple idle clicker game to pass the time.",
       github:
         "https://github.com/hawwokitty/get_academy/tree/main/idle_game_cleanUp",
       language: "JavaScript",
@@ -118,7 +118,8 @@ export default function Coding(props) {
     {
       id: "nonogram",
       name: "Nonogram",
-      description: "Simple nonogram",
+      description:
+        "A simple but fun nonogram puzzle game! If you're into logic puzzles, this one’s for you. It’s all about solving grids by filling in the right boxes.",
       github: "https://github.com/hawwokitty/get_academy/tree/main/nonogram",
       language: "JavaScript",
       category: "",
@@ -128,7 +129,8 @@ export default function Coding(props) {
     {
       id: "simonSays",
       name: "Simon Says",
-      description: "Simple simon says app",
+      description:
+        "A straightforward 'Simon Says' app—just like the classic memory game! Challenge your brain and see how many sequences you can remember.",
       github: "https://github.com/hawwokitty/get_academy/tree/main/simon_says",
       language: "JavaScript",
       category: "",
@@ -138,7 +140,8 @@ export default function Coding(props) {
     {
       id: "slideshow",
       name: "Slideshow",
-      description: "Simple slideshow, with sliding animations",
+      description:
+        "A simple yet smooth slideshow with nice sliding animations. It’s like PowerPoint… but way cooler. I mean, who doesn’t love a good slideshow?",
       github:
         "https://github.com/hawwokitty/get_academy/blob/main/slideshow/index2.html",
       language: "JavaScript",
@@ -150,7 +153,7 @@ export default function Coding(props) {
       id: "been2",
       name: "Been 2",
       description:
-        "First fullstack project, this doesnt have a demo yet. I used React, node.js, express and msSQL for the database. It's a website to track which countries and capital cities you've visited.",
+        "My first full-stack project! This is a React-based site that lets you track which countries and capital cities you’ve visited. It’s built with Node.js, Express, and msSQL for the database. No demo yet, but it’s coming soon!",
       github:
         "https://github.com/hawwokitty/Get_emne_5/tree/main/been2_thirdtry",
       language: "JavaScript",
@@ -163,16 +166,16 @@ export default function Coding(props) {
       name: "My portfolio",
       description: (
         <>
-          Literally the website you are on right now. It's made using React, and
-          specifically{" "}
+          Literally the website you’re on right now! Built using React, and
+          powered by the amazing{" "}
           <a
             href="https://github.com/React95/React95"
             target="_blank"
             rel="noopener noreferrer"
           >
-            this
-          </a>{" "}
-          library
+            React95 library
+          </a>
+          , giving it that retro Windows 95 desktop vibe.
         </>
       ),
       github: "https://github.com/hawwokitty/my-portfolio",
@@ -184,7 +187,8 @@ export default function Coding(props) {
     {
       id: "snake",
       name: "Snake",
-      description: "Snake, the game, playable in the terminal",
+      description:
+        "The classic Snake game, but playable right in your terminal! Old-school fun, no frills—just pure nostalgia.",
       github: "https://github.com/hawwokitty/get_cSharp/tree/main/Snake/Snake",
       language: "C#",
       category: "",
@@ -194,7 +198,8 @@ export default function Coding(props) {
     {
       id: "flappyBird",
       name: "Flappy Bird",
-      description: "Flappy bird (or rather, butterfly), the game, playable in the terminal",
+      description:
+        "Flappy Bird—but instead of a bird, it’s a butterfly! Fly through the obstacles in this terminal version of the game. Warning: it’s just as addicting.",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/FlappyBird/FlappyBird",
       language: "C#",
@@ -205,7 +210,8 @@ export default function Coding(props) {
     {
       id: "frogger",
       name: "Frogger",
-      description: "Frogger, the game, playable in the terminal",
+      description:
+        "Frogger, the iconic game, playable in your terminal! Help the frog cross the road and river—watch out for cars!",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/Frogger/Frogger",
       language: "C#",
@@ -216,7 +222,8 @@ export default function Coding(props) {
     {
       id: "harrypotter",
       name: "Hogwarts intro",
-      description: "A console application that let's you 'get into' Hogwarts, in a way!",
+      description:
+        "A console app that lets you feel like you’re entering Hogwarts! Experience the magic of the wizarding world (in a very console-y way).",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/HarryPotter/HarryPotter",
       language: "C#",
@@ -228,7 +235,7 @@ export default function Coding(props) {
       id: "housedecor",
       name: "House Decoration",
       description:
-        "A console application where you can decorate and paint some interior",
+        "A console app where you can unleash your inner interior designer! Choose colors, furniture, and make the room of your dreams (just... in written form).",
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/HouseDecoration/HouseDecoration",
       language: "C#",

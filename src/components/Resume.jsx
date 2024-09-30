@@ -22,7 +22,6 @@ export default function Resume(props) {
 
   const windowSmall = useWindowSize();
   console.log(windowSmall);
-  
 
   // Define the default position
   const screenW = window.innerWidth * 0.04; // Initial width 50% of screen
@@ -130,59 +129,107 @@ export default function Resume(props) {
               </Fieldset>
             </Tab>
             <Tab title="Skills">
-            <div style={windowSmall ? ({ height: (window.innerHeight * 0.7), overflow:"auto" }) : null}>
-              <Fieldset legend="Personal Skills">
-                <Checkbox readOnly checked>
-                  Teamwork
-                </Checkbox>
-                <Checkbox readOnly checked>
-                  Leadership
-                </Checkbox>
-                <Checkbox readOnly checked>
-                  Creative
-                </Checkbox>
-                <Checkbox readOnly checked>
-                  Curious
-                </Checkbox>
-                <Checkbox readOnly checked>
-                  Honest
-                </Checkbox>
-                <Checkbox readOnly checked>
-                  Accommodating
-                </Checkbox>
-                <Checkbox readOnly checked>
-                  Empathetic
-                </Checkbox>
-                <Checkbox readOnly checked>
-                  Adaptable
-                </Checkbox>
-              </Fieldset>
-              <Fieldset legend="Programming Skills">
-                <ul>
-                  <li className="resume-skills">HTML</li>
-                  <ProgressBar percent={97} width="200px" />
-                  <li className="resume-skills">CSS</li>
-                  <ProgressBar percent={74} width="200px" />
-                  <li className="resume-skills">JavaScript</li>
-                  <ProgressBar percent={88} width="200px" />
-                  <li className="resume-skills">C#</li>
-                  <ProgressBar percent={60} width="200px" />
-                  <li className="resume-skills">SQL</li>
-                  <ProgressBar percent={69} width="200px" />
-                  <li className="resume-skills">React</li>
-                  <ProgressBar percent={62} width="200px" />
-                </ul>
-              </Fieldset>
-              <Fieldset legend="Languages (speaking, not programming)">
-                <ul>
-                  <li className="resume-skills">Norwegian</li>
-                  <ProgressBar percent={100} width="200px" />
-                  <li className="resume-skills">English</li>
-                  <ProgressBar percent={98} width="200px" />
-                  <li className="resume-skills">Chinese</li>
-                  <ProgressBar percent={56} width="200px" />
-                </ul>
-              </Fieldset>
+              <div
+                style={
+                  windowSmall
+                    ? { height: window.innerHeight * 0.7, overflow: "auto" }
+                    : null
+                }
+              >
+                <Fieldset legend="Personal Skills">
+                  <Checkbox readOnly checked>
+                    Teamwork
+                  </Checkbox>
+                  <Checkbox readOnly checked>
+                    Leadership
+                  </Checkbox>
+                  <Checkbox readOnly checked>
+                    Creative
+                  </Checkbox>
+                  <Checkbox readOnly checked>
+                    Curious
+                  </Checkbox>
+                  <Checkbox readOnly checked>
+                    Honest
+                  </Checkbox>
+                  <Checkbox readOnly checked>
+                    Accommodating
+                  </Checkbox>
+                  <Checkbox readOnly checked>
+                    Empathetic
+                  </Checkbox>
+                  <Checkbox readOnly checked>
+                    Adaptable
+                  </Checkbox>
+                </Fieldset>
+                <Fieldset legend="Programming Skills">
+                  <ul>
+                    <li className="resume-skills">HTML</li>
+                    <ProgressBar percent={97} width="200px" />
+                    <li className="resume-skills">CSS</li>
+                    <ProgressBar percent={74} width="200px" />
+                    <li className="resume-skills">JavaScript</li>
+                    <ProgressBar percent={88} width="200px" />
+                    <li className="resume-skills">C#</li>
+                    <ProgressBar percent={60} width="200px" />
+                    <li className="resume-skills">SQL</li>
+                    <ProgressBar percent={69} width="200px" />
+                    <li className="resume-skills">React</li>
+                    <ProgressBar percent={62} width="200px" />
+                  </ul>
+                </Fieldset>
+                <Fieldset legend="Languages (speaking, not programming)">
+                  <ul>
+                    <li className="resume-skills">Norwegian</li>
+                    <ProgressBar percent={100} width="200px" />
+                    <li className="resume-skills">English</li>
+                    <ProgressBar percent={98} width="200px" />
+                    <li className="resume-skills">Chinese</li>
+                    <ProgressBar percent={56} width="200px" />
+                  </ul>
+                </Fieldset>
+              </div>
+            </Tab>
+            <Tab title="Personality">
+              <div
+                style={
+                  windowSmall
+                    ? { height: window.innerHeight * 0.7, overflow: "auto" }
+                    : null
+                }
+              >
+                <Fieldset legend="Personality Tests">
+                  <ul>
+                    <li className="resume-skills">MBTI: INFP/ENFP(?)</li>
+                    <li className="resume-skills">
+                      Enneagram type: (maybe 9? gotta take it again)
+                    </li>
+                  </ul>
+                </Fieldset>
+                <Fieldset legend="Team Role">
+                  <ul>
+                    <li className="resume-skills">
+                      Diversity Icebreaker:{" "}
+                      <span style={{ color: "red" }}>Red (62)</span>,{" "}
+                      <span style={{ color: "green" }}>Green (54)</span>,{" "}
+                      <span style={{ color: "blue" }}>Blue (34)</span>
+                    </li>
+
+                    <li className="resume-skills">
+                      Belbin-team-roles: Teamworker, Monitor Evaluator, Plant
+                    </li>
+                  </ul>
+                </Fieldset>
+                <Fieldset legend="Signature Strengths">
+                  <ul>
+                    <li className="resume-skills">Honesty</li>
+                    <li className="resume-skills">Fairness</li>
+                    <li className="resume-skills">Forgiveness</li>
+                    <li className="resume-skills">Kindness</li>
+                    <li className="resume-skills">Teamwork and Loyalty</li>
+                    <li className="resume-skills">Curiosity</li>
+                  </ul>
+                </Fieldset>
               </div>
             </Tab>
           </Tabs>

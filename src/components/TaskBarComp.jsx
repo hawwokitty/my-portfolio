@@ -22,6 +22,7 @@ function TaskBarComp(props) {
   const handleOpenArtsAndCrafts = props.openArts;
   const handleOpenResume = props.openResume;
   const handleOpenContact = props.openContact;
+  const handleOpenCredit = props.openCredit;
   return (
     <>
       <TaskBar
@@ -84,7 +85,7 @@ function TaskBarComp(props) {
                 </List.Item>
               </List>
             </List.Item>
-            <List.Item icon={<Awfxcg321303 variant="32x32_4" />}>
+            <List.Item icon={<Awfxcg321303 variant="32x32_4" />} onClick={handleOpenCredit}>
               Credit
             </List.Item>
             <List.Item icon={<MsDos variant="32x32_32" />}>

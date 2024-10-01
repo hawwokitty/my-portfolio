@@ -65,6 +65,7 @@ export default function ArtsAndCrafts(props) {
   const handleCloseArtsAndCrafts = () => {
     toggleShowArtsAndCrafts(false);
     setImage("");
+    setImageCredit("");
   };
   const handleImageClick = (image) => {
     setImage(image.src);
@@ -247,7 +248,7 @@ export default function ArtsAndCrafts(props) {
         >
           <div
             className="arts-fields"
-            style={windowSmall ? { height: "90%" } : { height: "100%" }}
+            style={windowSmall ? { height: "91.5%" } : { height: "93.8%" }}
           >
             <Frame
               w="100%"
@@ -266,7 +267,6 @@ export default function ArtsAndCrafts(props) {
               <div className="arts-picture-text">
                 <span style={{ padding: "5px" }}>Picture Text:</span>
                 <Dropdown options={[image]} />
-                
               </div>
               <div className="arts-img-div">
                 <Frame
@@ -279,27 +279,24 @@ export default function ArtsAndCrafts(props) {
                   <img src={image} alt={image} />
                 </Frame>
               </div>
-              <div style={{display:"flex"}}>
-              <Button
-                onClick={() =>
-                  (document.body.style.backgroundImage = `url(${image})`)
-                }
-                className="arts-bg-button"
-              >
-                Set as background image
-              </Button>
-              {imageCredit && (
-                  <div style={{ padding: "5px" }}>
-                    <a
-                      href={imageCredit}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Photo credit
-                    </a>
-                  </div>
+              <div style={{ display: "flex" }}>
+                <Button
+                  onClick={() =>
+                    (document.body.style.backgroundImage = `url(${image})`)
+                  }
+                  className="arts-bg-button"
+                >
+                  Set as background image
+                </Button>
+                {imageCredit && (
+                  <Button
+                    onClick={() => window.open(imageCredit, "_blank")}
+                    className="arts-bg-button"
+                  >
+                    Photo credit
+                  </Button>
                 )}
-                </div>
+              </div>
             </Frame>
           </div>
         </Modal>

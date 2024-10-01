@@ -11,108 +11,76 @@ import {
 import { Winpopup3 } from "@react95/icons";
 import { useWindowSize } from "./WindowSizeContext";
 
-const getNormalImages = async () => {
-  // Dynamically import all images from the folder
-  const images = import.meta.glob("../images/my-art/normal/*.{png,jpg,jpeg}");  
+// Helper function to get images based on the category
+// Helper function to get images based on the category
+const getImagesByCategory = async (category) => {
+  let images;
+  if (category === "normal") {
+    images = import.meta.glob("../images/my-art/normal/*.{png,jpg,jpeg}");
+  } else if (category === "abstract") {
+    images = import.meta.glob(
+      "../images/my-art/abstract-vent/*.{png,jpg,jpeg}"
+    );
+  } else if (category === "juju") {
+    images = import.meta.glob(
+      "../images/my-cosplay/jujuInTheBox/*.{png,jpg,jpeg}"
+    );
+  } else if (category === "others") {
+    images = import.meta.glob("../images/my-cosplay/*.{png,jpg,jpeg}");
+  } else {
+    return [];
+  }
 
-  // Resolve image paths and return an array of image objects
   const imagePromises = Object.keys(images).map(async (key, index) => {
-    const imagePath = await images[key](); // Await the dynamic import to get the actual image path
-    const imageName = key.split("/").pop(); // Extract the filename
+    const imagePath = await images[key]();
+    const imageName = key.split("/").pop();
+    const folderPath = key; // Extract the folder path from the key
+
+    const creditLink = folderPath.includes("juju")
+      ? "https://jujuinthebox.myportfolio.com/"
+      : folderPath.includes("ookami")
+      ? "https://hannenor.wixsite.com/ookamicphoto"
+      : folderPath.includes("yui")
+      ? "https://www.facebook.com/yuicosplayphoto/"
+      : null;
 
     return {
-      id: `artFile${index}`,
+      id: `${category}File${index}`,
       label: imageName,
-      src: imagePath.default, // Access the default export, which contains the path for image
+      src: imagePath.default,
+      creditLink: creditLink, // Include credit link if applicable
     };
   });
 
-  return Promise.all(imagePromises); // Wait for all image paths to be resolved
-};
-const getJujuCosplayImages = async () => {
-  // Dynamically import all images from the folder
-  const images = import.meta.glob("../images/my-cosplay/jujuInTheBox/*.{png,jpg,jpeg}");  
-
-  // Resolve image paths and return an array of image objects
-  const imagePromises = Object.keys(images).map(async (key, index) => {
-    const imagePath = await images[key](); // Await the dynamic import to get the actual image path
-    const imageName = key.split("/").pop(); // Extract the filename
-
-    return {
-      id: `cosplayFile${index}`,
-      label: imageName,
-      src: imagePath.default, // Access the default export, which contains the path for image
-    };
-  });
-
-  return Promise.all(imagePromises); // Wait for all image paths to be resolved
-};
-const getOtherCosplayImages = async () => {
-  // Dynamically import all images from the folder
-  const images = import.meta.glob("../images/my-cosplay/*.{png,jpg,jpeg}");  
-
-  // Resolve image paths and return an array of image objects
-  const imagePromises = Object.keys(images).map(async (key, index) => {
-    const imagePath = await images[key](); // Await the dynamic import to get the actual image path
-    const imageName = key.split("/").pop(); // Extract the filename
-
-    return {
-      id: `cosplayFile${index}`,
-      label: imageName,
-      src: imagePath.default, // Access the default export, which contains the path for image
-    };
-  });
-
-  return Promise.all(imagePromises); // Wait for all image paths to be resolved
-};
-
-const getAbstractImages = async () => {
-  // Dynamically import all images from the folder
-  const images = import.meta.glob(
-    "../images/my-art/abstract-vent/*.{png,jpg,jpeg}"
-  );
-
-  // Resolve image paths and return an array of image objects
-  const imagePromises = Object.keys(images).map(async (key, index) => {
-    const imagePath = await images[key](); // Await the dynamic import to get the actual image path
-    const imageName = key.split("/").pop(); // Extract the filename
-
-    return {
-      id: `artFile${index}`,
-      label: imageName,
-      src: imagePath.default, // Access the default export, which contains the path for image
-    };
-  });
-
-  return Promise.all(imagePromises); // Wait for all image paths to be resolved
+  return Promise.all(imagePromises);
 };
 
 export default function ArtsAndCrafts(props) {
   const showArtsAndCrafts = props.show;
   const toggleShowArtsAndCrafts = props.toggle;
   const [image, setImage] = useState("");
+  const [imageCredit, setImageCredit] = useState("");
+  const [treeData, setTreeData] = useState([]);
 
   const handleCloseArtsAndCrafts = () => {
     toggleShowArtsAndCrafts(false);
     setImage("");
   };
-  const handleImageClick = (imageSrc) => {
-    setImage(imageSrc);
+  const handleImageClick = (image) => {
+    setImage(image.src);
+    setImageCredit(image.creditLink);
   };
 
-    // Define the default position
-    const screenW = window.innerWidth * 0.06; // Initial width 50% of screen
-    const screenH =  -30;
-
-  const [treeData, setTreeData] = useState([]);
+  const screenW = window.innerWidth * 0.06;
+  const screenH = -30;
+  const windowSmall = useWindowSize();
 
   useEffect(() => {
-    // Fetch and set the images when the component mounts
     const fetchImages = async () => {
-      const normalImages = await getNormalImages();
-      const abstractImages = await getAbstractImages();
-      const jujuCosplayImages = await getJujuCosplayImages();
-      const otherCosplayImages = await getOtherCosplayImages();
+      const normalImages = await getImagesByCategory("normal");
+      const abstractImages = await getImagesByCategory("abstract");
+      const jujuCosplayImages = await getImagesByCategory("juju");
+      const otherCosplayImages = await getImagesByCategory("others");
 
       const treeStructure = [
         {
@@ -132,8 +100,7 @@ export default function ArtsAndCrafts(props) {
                       label: "Normal",
                       children: normalImages.map((image) => ({
                         id: image.id,
-                        // Suggestion from ggdaltoso
-                        onClick: () => handleImageClick(image.src),
+                        onClick: () => handleImageClick(image),
                         label: (
                           <span style={{ cursor: "pointer" }}>
                             {image.label}
@@ -154,8 +121,7 @@ export default function ArtsAndCrafts(props) {
                       label: "Abstract/Vent",
                       children: abstractImages.map((image) => ({
                         id: image.id,
-                        // You can set it only once here and leave label and img as is
-                        onClick: () => handleImageClick(image.src),
+                        onClick: () => handleImageClick(image),
                         label: (
                           <span style={{ cursor: "pointer" }}>
                             {image.label}
@@ -182,8 +148,7 @@ export default function ArtsAndCrafts(props) {
                       label: "Juju In The Box (Photographer)",
                       children: jujuCosplayImages.map((image) => ({
                         id: image.id,
-                        // Suggestion from ggdaltoso
-                        onClick: () => handleImageClick(image.src),
+                        onClick: () => handleImageClick(image),
                         label: (
                           <span style={{ cursor: "pointer" }}>
                             {image.label}
@@ -204,8 +169,7 @@ export default function ArtsAndCrafts(props) {
                       label: "Others",
                       children: otherCosplayImages.map((image) => ({
                         id: image.id,
-                        // You can set it only once here and leave label and img as is
-                        onClick: () => handleImageClick(image.src),
+                        onClick: () => handleImageClick(image),
                         label: (
                           <span style={{ cursor: "pointer" }}>
                             {image.label}
@@ -223,37 +187,17 @@ export default function ArtsAndCrafts(props) {
                     },
                   ],
                 },
-                {
-                  id: "crafts",
-                  label: "Crafts",
-                  children: [
-                    {
-                      id: "craftFile1",
-                      label: "CraftFile1.jpg",
-                      icon: (
-                        <img src="path/to/craftfile1.jpg" alt="CraftFile1" />
-                      ),
-                    },
-                    {
-                      id: "craftFile2",
-                      label: "CraftFile2.jpg",
-                      icon: (
-                        <img src="path/to/craftfile2.jpg" alt="CraftFile2" />
-                      ),
-                    },
-                  ],
-                },
               ],
             },
           ],
         },
       ];
-      setTreeData(treeStructure); // Set the tree structure with the images
+      setTreeData(treeStructure);
     };
 
     fetchImages();
   }, []);
-  const windowSmall = useWindowSize();
+
   return (
     <>
       {showArtsAndCrafts && (
@@ -269,12 +213,7 @@ export default function ArtsAndCrafts(props) {
             },
           }}
           titleBarOptions={[
-            <TitleBar.Help
-              key="help"
-              onClick={() => {
-                alert("Help!");
-              }}
-            />,
+            <TitleBar.Help key="help" onClick={() => alert("Help!")} />,
             <TitleBar.Close key="close" onClick={handleCloseArtsAndCrafts} />,
           ]}
           menu={[
@@ -327,6 +266,7 @@ export default function ArtsAndCrafts(props) {
               <div className="arts-picture-text">
                 <span style={{ padding: "5px" }}>Picture Text:</span>
                 <Dropdown options={[image]} />
+                
               </div>
               <div className="arts-img-div">
                 <Frame
@@ -339,6 +279,7 @@ export default function ArtsAndCrafts(props) {
                   <img src={image} alt={image} />
                 </Frame>
               </div>
+              <div style={{display:"flex"}}>
               <Button
                 onClick={() =>
                   (document.body.style.backgroundImage = `url(${image})`)
@@ -347,6 +288,18 @@ export default function ArtsAndCrafts(props) {
               >
                 Set as background image
               </Button>
+              {imageCredit && (
+                  <div style={{ padding: "5px" }}>
+                    <a
+                      href={imageCredit}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Photo credit
+                    </a>
+                  </div>
+                )}
+                </div>
             </Frame>
           </div>
         </Modal>

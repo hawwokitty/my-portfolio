@@ -21,7 +21,6 @@ export default function Resume(props) {
   };
 
   const windowSmall = useWindowSize();
-  console.log(windowSmall);
 
   // Define the default position
   const screenW = window.innerWidth * 0.04; // Initial width 50% of screen

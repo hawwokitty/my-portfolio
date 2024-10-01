@@ -29,6 +29,42 @@ const getNormalImages = async () => {
 
   return Promise.all(imagePromises); // Wait for all image paths to be resolved
 };
+const getJujuCosplayImages = async () => {
+  // Dynamically import all images from the folder
+  const images = import.meta.glob("../images/my-cosplay/jujuInTheBox/*.{png,jpg,jpeg}");  
+
+  // Resolve image paths and return an array of image objects
+  const imagePromises = Object.keys(images).map(async (key, index) => {
+    const imagePath = await images[key](); // Await the dynamic import to get the actual image path
+    const imageName = key.split("/").pop(); // Extract the filename
+
+    return {
+      id: `cosplayFile${index}`,
+      label: imageName,
+      src: imagePath.default, // Access the default export, which contains the path for image
+    };
+  });
+
+  return Promise.all(imagePromises); // Wait for all image paths to be resolved
+};
+const getOtherCosplayImages = async () => {
+  // Dynamically import all images from the folder
+  const images = import.meta.glob("../images/my-cosplay/*.{png,jpg,jpeg}");  
+
+  // Resolve image paths and return an array of image objects
+  const imagePromises = Object.keys(images).map(async (key, index) => {
+    const imagePath = await images[key](); // Await the dynamic import to get the actual image path
+    const imageName = key.split("/").pop(); // Extract the filename
+
+    return {
+      id: `cosplayFile${index}`,
+      label: imageName,
+      src: imagePath.default, // Access the default export, which contains the path for image
+    };
+  });
+
+  return Promise.all(imagePromises); // Wait for all image paths to be resolved
+};
 
 const getAbstractImages = async () => {
   // Dynamically import all images from the folder
@@ -75,6 +111,8 @@ export default function ArtsAndCrafts(props) {
     const fetchImages = async () => {
       const normalImages = await getNormalImages();
       const abstractImages = await getAbstractImages();
+      const jujuCosplayImages = await getJujuCosplayImages();
+      const otherCosplayImages = await getOtherCosplayImages();
 
       const treeStructure = [
         {
@@ -140,24 +178,48 @@ export default function ArtsAndCrafts(props) {
                   label: "Cosplay",
                   children: [
                     {
-                      id: "cosplayFile1",
-                      label: "CosplayFile1.jpg",
-                      icon: (
-                        <img
-                          src="path/to/cosplayfile1.jpg"
-                          alt="CosplayFile1"
-                        />
-                      ),
+                      id: "juju",
+                      label: "Juju In The Box (Photographer)",
+                      children: jujuCosplayImages.map((image) => ({
+                        id: image.id,
+                        // Suggestion from ggdaltoso
+                        onClick: () => handleImageClick(image.src),
+                        label: (
+                          <span style={{ cursor: "pointer" }}>
+                            {image.label}
+                          </span>
+                        ),
+                        icon: (
+                          <img
+                            src={image.src}
+                            alt={image.label}
+                            style={{ width: "15px" }}
+                            loading="lazy"
+                          />
+                        ),
+                      })),
                     },
                     {
-                      id: "cosplayFile2",
-                      label: "CosplayFile2.jpg",
-                      icon: (
-                        <img
-                          src="path/to/cosplayfile2.jpg"
-                          alt="CosplayFile2"
-                        />
-                      ),
+                      id: "others",
+                      label: "Others",
+                      children: otherCosplayImages.map((image) => ({
+                        id: image.id,
+                        // You can set it only once here and leave label and img as is
+                        onClick: () => handleImageClick(image.src),
+                        label: (
+                          <span style={{ cursor: "pointer" }}>
+                            {image.label}
+                          </span>
+                        ),
+                        icon: (
+                          <img
+                            src={image.src}
+                            alt={image.label}
+                            style={{ width: "15px" }}
+                            loading="lazy"
+                          />
+                        ),
+                      })),
                     },
                   ],
                 },

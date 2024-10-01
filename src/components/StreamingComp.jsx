@@ -219,7 +219,7 @@ export default function StreamingComp(props) {
                 w="100%"
                 style={{ position: "relative", padding: "5px" }} // Ensure positioning
               > */}
-              <Dropdown options={["https://www.twitch.tv/hawwokitty"]} />
+              <Dropdown w={"400px"} options={["https://www.twitch.tv/hawwokitty"]} />
               {/* https://www.twitch.tv/hawwokitty */}
               {/* </Frame> */}
             </div>
@@ -255,3 +255,4 @@ export default function StreamingComp(props) {
     </>
   );
 }
+

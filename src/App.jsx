@@ -14,65 +14,83 @@ import Credit from "./components/Credit";
 import { useState } from "react";
 
 function App() {
-  const [showPaint, toggleShowPaint] = useState(false);
-  const [showStreaming, toggleShowStreaming] = useState(false);
-  const [showHelp, toggleShowHelp] = useState(false);
-  const [showArtsAndCrafts, toggleShowArtsAndCrafts] = useState(false);
-  const [showResume, toggleShowResume] = useState(false);
-  const [showContact, toggleShowContact] = useState(false);
-  const [showCoding, toggleShowCoding] = useState(false);
-  const [showRecycleBin, toggleShowRecycleBin] = useState(false);
-  const [showCredit, toggleShowCredit] = useState(false);
+  const [showWindows, setShowWindows] = useState({
+    paint: false,
+    streaming: false,
+    artsAndCrafts: false,
+    resume: false,
+    contact: false,
+    coding: false,
+    recycleBin: false,
+    credit: false,
+    help: false,
+  });
 
-  const handleOpenArtsAndCrafts = () => toggleShowArtsAndCrafts(true);
-  const handleOpenPaint = () => toggleShowPaint(true);
-  const handleOpenStreaming = () => toggleShowStreaming(true);
-  const handleOpenResume = () => toggleShowResume(true);
-  const handleOpenContact = () => toggleShowContact(true);
-  const handleOpenCoding = () => toggleShowCoding(true);
-  const handleOpenRecycleBin = () => toggleShowRecycleBin(true);
-  const handleOpenCredit = () => toggleShowCredit(true);
+  const toggleWindow = (windowName, isVisible) => {
+    setShowWindows((prev) => ({
+      ...prev,
+      [windowName]: isVisible,
+    }));
+  };
 
-  const handleShowHelp = () => toggleShowHelp(true);
-  const handleCloseHelp = () => toggleShowHelp(false);
+  const handleOpenWindow = (windowName) => toggleWindow(windowName, true);
+  const handleCloseHelp = () => toggleWindow("help", false);
 
   return (
     <>
       <WindowSizeProvider>
         <TaskBarComp
-          openPaint={handleOpenPaint}
-          openStreaming={handleOpenStreaming}
-          openArts={handleOpenArtsAndCrafts}
-          openResume={handleOpenResume}
-          openContact={handleOpenContact}
-          openCoding={handleOpenCoding}
-          openCredit={handleOpenCredit}
+          openPaint={() => handleOpenWindow("paint")}
+          openStreaming={() => handleOpenWindow("streaming")}
+          openArts={() => handleOpenWindow("artsAndCrafts")}
+          openResume={() => handleOpenWindow("resume")}
+          openContact={() => handleOpenWindow("contact")}
+          openCoding={() => handleOpenWindow("coding")}
+          openCredit={() => handleOpenWindow("credit")}
         />
         <Desktop
-          openPaint={handleOpenPaint}
-          openStreaming={handleOpenStreaming}
-          openArts={handleOpenArtsAndCrafts}
-          openResume={handleOpenResume}
-          openContact={handleOpenContact}
-          openCoding={handleOpenCoding}
-          openRecycleBin={handleOpenRecycleBin}
+          openPaint={() => handleOpenWindow("paint")}
+          openStreaming={() => handleOpenWindow("streaming")}
+          openArts={() => handleOpenWindow("artsAndCrafts")}
+          openResume={() => handleOpenWindow("resume")}
+          openContact={() => handleOpenWindow("contact")}
+          openCoding={() => handleOpenWindow("coding")}
+          openRecycleBin={() => handleOpenWindow("recycleBin")}
         />
         <PaintComp
-          show={showPaint}
-          toggle={toggleShowPaint}
-          onHelp={handleShowHelp}
+          show={showWindows.paint}
+          toggle={() => toggleWindow("paint", !showWindows.paint)}
+          onHelp={() => toggleWindow("help", true)}
         />
-        <StreamingComp show={showStreaming} toggle={toggleShowStreaming} />
+        <StreamingComp
+          show={showWindows.streaming}
+          toggle={() => toggleWindow("streaming", !showWindows.streaming)}
+        />
         <ArtsAndCrafts
-          show={showArtsAndCrafts}
-          toggle={toggleShowArtsAndCrafts}
+          show={showWindows.artsAndCrafts}
+          toggle={() => toggleWindow("artsAndCrafts", !showWindows.artsAndCrafts)}
         />
-        <Resume show={showResume} toggle={toggleShowResume} />
-        <Contact show={showContact} toggle={toggleShowContact} />
-        <Coding show={showCoding} toggle={toggleShowCoding} />
-        <Credit show={showCredit} toggle={toggleShowCredit} />
-        <RecycleBin show={showRecycleBin} toggle={toggleShowRecycleBin} />
-        {showHelp && <ArtPrompt show={showHelp} toggle={handleCloseHelp} />}
+        <Resume
+          show={showWindows.resume}
+          toggle={() => toggleWindow("resume", !showWindows.resume)}
+        />
+        <Contact
+          show={showWindows.contact}
+          toggle={() => toggleWindow("contact", !showWindows.contact)}
+        />
+        <Coding
+          show={showWindows.coding}
+          toggle={() => toggleWindow("coding", !showWindows.coding)}
+        />
+        <Credit
+          show={showWindows.credit}
+          toggle={() => toggleWindow("credit", !showWindows.credit)}
+        />
+        <RecycleBin
+          show={showWindows.recycleBin}
+          toggle={() => toggleWindow("recycleBin", !showWindows.recycleBin)}
+        />
+        {showWindows.help && <ArtPrompt show={showWindows.help} toggle={handleCloseHelp} />}
       </WindowSizeProvider>
     </>
   );

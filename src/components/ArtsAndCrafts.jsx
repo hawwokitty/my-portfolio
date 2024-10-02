@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Modal,
   List,
@@ -10,6 +10,7 @@ import {
 } from "@react95/core";
 import { Winpopup3 } from "@react95/icons";
 import { useWindowSize } from "./WindowSizeContext";
+import { Hourglass } from "react95";
 
 // Helper function to get images based on the category
 const getImagesByCategory = async (category) => {
@@ -20,11 +21,19 @@ const getImagesByCategory = async (category) => {
     images = import.meta.glob("../images/my-art/normal/*.{png,jpg,jpeg}");
     smallImages = import.meta.glob("../images/my-art/normal/*-small.jpg");
   } else if (category === "abstract") {
-    images = import.meta.glob("../images/my-art/abstract-vent/*.{png,jpg,jpeg}");
-    smallImages = import.meta.glob("../images/my-art/abstract-vent/*-small.jpg");
+    images = import.meta.glob(
+      "../images/my-art/abstract-vent/*.{png,jpg,jpeg}"
+    );
+    smallImages = import.meta.glob(
+      "../images/my-art/abstract-vent/*-small.jpg"
+    );
   } else if (category === "juju") {
-    images = import.meta.glob("../images/my-cosplay/jujuInTheBox/*.{png,jpg,jpeg}");
-    smallImages = import.meta.glob("../images/my-cosplay/jujuInTheBox/*-small.jpg");
+    images = import.meta.glob(
+      "../images/my-cosplay/jujuInTheBox/*.{png,jpg,jpeg}"
+    );
+    smallImages = import.meta.glob(
+      "../images/my-cosplay/jujuInTheBox/*-small.jpg"
+    );
   } else if (category === "others") {
     images = import.meta.glob("../images/my-cosplay/*.{png,jpg,jpeg}");
     smallImages = import.meta.glob("../images/my-cosplay/*-small.jpg");
@@ -34,16 +43,19 @@ const getImagesByCategory = async (category) => {
 
   const imagePromises = Object.keys(images).map(async (key, index) => {
     const imagePath = await images[key]();
-    const imageName = key.split("/").pop().replace(/\.[\w\d]+$/, ""); // Remove the extension for matching
-    
+    const imageName = key
+      .split("/")
+      .pop()
+      .replace(/\.[\w\d]+$/, ""); // Remove the extension for matching
+
     // Find the corresponding small image
-    const smallKey = Object.keys(smallImages).find((smallKey) => 
+    const smallKey = Object.keys(smallImages).find((smallKey) =>
       smallKey.includes(`${imageName}-small`)
     );
-    
+
     const smallImagePath = smallKey ? await smallImages[smallKey]() : imagePath;
-    
-    const folderPath = key; 
+
+    const folderPath = key;
 
     const creditLink = folderPath.includes("juju")
       ? "https://jujuinthebox.myportfolio.com/"
@@ -71,17 +83,45 @@ export default function ArtsAndCrafts(props) {
   const [image, setImage] = useState("");
   const [imageCredit, setImageCredit] = useState("");
   const [treeData, setTreeData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const loadingRef = useRef(null);
 
   const handleCloseArtsAndCrafts = () => {
     toggleShowArtsAndCrafts(false);
     setImage("");
     setImageCredit("");
   };
+
   const handleImageClick = (image) => {
-    setImage(image.src);
     setImageCredit(image.creditLink);
-    console.log(image);
-    
+    setLoading(true);
+    setImage(image.smallSrc);
+    handleSetImage(image.src);
+  };
+
+  const handleSetImage = (imageSrc) => {
+    // Store the current loading image in a ref
+    loadingRef.current = imageSrc;
+
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = imageSrc;
+
+      img.onload = () => {
+        // Only set the image if it's still the current loading image
+        if (loadingRef.current === imageSrc) {
+          setImage(imageSrc); // Set the large image only after it has loaded
+        }
+        setLoading(false);
+        resolve(); // Resolve the promise after setting the image
+      };
+
+      img.onerror = () => {
+        console.error("Error loading image:", imageSrc);
+        setLoading(false);
+        resolve(); // Still resolve to avoid blocking
+      };
+    });
   };
 
   const screenW = window.innerWidth * 0.06;
@@ -111,44 +151,52 @@ export default function ArtsAndCrafts(props) {
                     {
                       id: "normal",
                       label: "Normal",
-                      children: normalImages.map((image) => ({
-                        id: image.id,
-                        onClick: () => handleImageClick(image),
-                        label: (
-                          <span style={{ cursor: "pointer" }}>
-                            {image.label}
-                          </span>
-                        ),
-                        icon: (
-                          <img
-                            src={image.src}
-                            alt={image.label}
-                            style={{ width: "15px" }}
-                            loading="lazy"
-                          />
-                        ),
-                      })),
+                      children: normalImages
+                        .filter((image) => !image.src.includes("-small"))
+                        .map((image) => {
+                          return {
+                            id: image.id,
+                            onClick: () => handleImageClick(image), // Send the full image object
+                            label: (
+                              <span style={{ cursor: "pointer" }}>
+                                {image.label}
+                              </span>
+                            ),
+                            icon: (
+                              <img
+                                src={image.smallSrc} // Use the small image for the icon
+                                alt={image.label}
+                                style={{ width: "15px" }}
+                                loading="lazy"
+                              />
+                            ),
+                          };
+                        }),
                     },
                     {
                       id: "abstract",
                       label: "Abstract/Vent",
-                      children: abstractImages.map((image) => ({
-                        id: image.id,
-                        onClick: () => handleImageClick(image),
-                        label: (
-                          <span style={{ cursor: "pointer" }}>
-                            {image.label}
-                          </span>
-                        ),
-                        icon: (
-                          <img
-                            src={image.src}
-                            alt={image.label}
-                            style={{ width: "15px" }}
-                            loading="lazy"
-                          />
-                        ),
-                      })),
+                      children: abstractImages
+                        .filter((image) => !image.src.includes("-small"))
+                        .map((image) => {
+                          return {
+                            id: image.id,
+                            onClick: () => handleImageClick(image), // Send the full image object
+                            label: (
+                              <span style={{ cursor: "pointer" }}>
+                                {image.label}
+                              </span>
+                            ),
+                            icon: (
+                              <img
+                                src={image.smallSrc} // Use the small image for the icon
+                                alt={image.label}
+                                style={{ width: "15px" }}
+                                loading="lazy"
+                              />
+                            ),
+                          };
+                        }),
                     },
                   ],
                 },
@@ -160,47 +208,51 @@ export default function ArtsAndCrafts(props) {
                       id: "juju",
                       label: "Juju In The Box (Photographer)",
                       children: jujuCosplayImages
-                      .filter((image) => !image.src.includes('-small')) 
-                      .map((image) => {
-                        return {
-                          id: image.id,
-                          onClick: () => handleImageClick(image), // Send the full image object
-                          label: (
-                            <span style={{ cursor: "pointer" }}>
-                              {image.label}
-                            </span>
-                          ),
-                          icon: (
-                            <img
-                              src={image.smallSrc} // Use the small image for the icon
-                              alt={image.label}
-                              style={{ width: "15px" }}
-                              loading="lazy"
-                            />
-                          ),
-                        };
-                      }),
+                        .filter((image) => !image.src.includes("-small"))
+                        .map((image) => {
+                          return {
+                            id: image.id,
+                            onClick: () => handleImageClick(image), // Send the full image object
+                            label: (
+                              <span style={{ cursor: "pointer" }}>
+                                {image.label}
+                              </span>
+                            ),
+                            icon: (
+                              <img
+                                src={image.smallSrc} // Use the small image for the icon
+                                alt={image.label}
+                                style={{ width: "15px" }}
+                                loading="lazy"
+                              />
+                            ),
+                          };
+                        }),
                     },
                     {
                       id: "others",
                       label: "Others",
-                      children: otherCosplayImages.map((image) => ({
-                        id: image.id,
-                        onClick: () => handleImageClick(image),
-                        label: (
-                          <span style={{ cursor: "pointer" }}>
-                            {image.label}
-                          </span>
-                        ),
-                        icon: (
-                          <img
-                            src={image.src}
-                            alt={image.label}
-                            style={{ width: "15px" }}
-                            loading="lazy"
-                          />
-                        ),
-                      })),
+                      children: otherCosplayImages
+                        .filter((image) => !image.src.includes("-small"))
+                        .map((image) => {
+                          return {
+                            id: image.id,
+                            onClick: () => handleImageClick(image), // Send the full image object
+                            label: (
+                              <span style={{ cursor: "pointer" }}>
+                                {image.label}
+                              </span>
+                            ),
+                            icon: (
+                              <img
+                                src={image.smallSrc} // Use the small image for the icon
+                                alt={image.label}
+                                style={{ width: "15px" }}
+                                loading="lazy"
+                              />
+                            ),
+                          };
+                        }),
                     },
                   ],
                 },
@@ -293,6 +345,9 @@ export default function ArtsAndCrafts(props) {
                   boxShadow="$out"
                 >
                   <img src={image} alt={image} />
+                  {loading && (
+                    <Hourglass size={32} style={{ position: "absolute" }} />
+                  )}
                 </Frame>
               </div>
               <div style={{ display: "flex" }}>

@@ -19,24 +19,28 @@ const getImagesByCategory = async (category) => {
 
   if (category === "normal") {
     images = import.meta.glob("../images/my-art/normal/*.{png,jpg,jpeg}");
-    smallImages = import.meta.glob("../images/my-art/normal/*-small.jpg");
+    smallImages = import.meta.glob(
+      "../images/my-art/normal/*-small.{jpg,jpeg,png}"
+    );
   } else if (category === "abstract") {
     images = import.meta.glob(
       "../images/my-art/abstract-vent/*.{png,jpg,jpeg}"
     );
     smallImages = import.meta.glob(
-      "../images/my-art/abstract-vent/*-small.jpg"
+      "../images/my-art/abstract-vent/*-small.{jpg,jpeg,png}"
     );
   } else if (category === "juju") {
     images = import.meta.glob(
       "../images/my-cosplay/jujuInTheBox/*.{png,jpg,jpeg}"
     );
     smallImages = import.meta.glob(
-      "../images/my-cosplay/jujuInTheBox/*-small.jpg"
+      "../images/my-cosplay/jujuInTheBox/*-small.{jpg,jpeg,png}"
     );
   } else if (category === "others") {
     images = import.meta.glob("../images/my-cosplay/*.{png,jpg,jpeg}");
-    smallImages = import.meta.glob("../images/my-cosplay/*-small.jpg");
+    smallImages = import.meta.glob(
+      "../images/my-cosplay/*-small.{jpg,jpeg,png}"
+    );
   } else {
     return [];
   }
@@ -46,16 +50,17 @@ const getImagesByCategory = async (category) => {
     const imageName = key
       .split("/")
       .pop()
-      .replace(/\.[\w\d]+$/, ""); // Remove the extension for matching
+      .replace(/\.[\w\d]+$/, ""); // Remove extension
 
-    // Find the corresponding small image
+    // Find the corresponding small image by checking if the name includes "-small"
     const smallKey = Object.keys(smallImages).find((smallKey) =>
       smallKey.includes(`${imageName}-small`)
     );
 
+    // Load small image if it exists, otherwise default to the full image
     const smallImagePath = smallKey ? await smallImages[smallKey]() : imagePath;
 
-    const folderPath = key;
+    const folderPath = key; // Determine credit link based on folder
 
     const creditLink = folderPath.includes("juju")
       ? "https://jujuinthebox.myportfolio.com/"
@@ -68,9 +73,9 @@ const getImagesByCategory = async (category) => {
     return {
       id: `${category}File${index}`,
       label: imageName,
-      src: imagePath.default,
+      src: imagePath.default, // Full image path
       creditLink: creditLink,
-      smallSrc: smallImagePath.default, // Use the small image if available
+      smallSrc: smallImagePath.default, // Small image or fallback to full image
     };
   });
 
@@ -93,6 +98,8 @@ export default function ArtsAndCrafts(props) {
   };
 
   const handleImageClick = (image) => {
+    console.log(image);
+
     setImageCredit(image.creditLink);
     setLoading(true);
     setImage(image.smallSrc);

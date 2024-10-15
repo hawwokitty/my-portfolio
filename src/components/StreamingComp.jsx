@@ -58,6 +58,7 @@ export default function StreamingComp(props) {
                 alert("Help!");
               }}
             />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseModal} />,
           ]}
           menu={[

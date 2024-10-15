@@ -98,8 +98,6 @@ export default function ArtsAndCrafts(props) {
   };
 
   const handleImageClick = (image) => {
-    console.log(image);
-
     setImageCredit(image.creditLink);
     setLoading(true);
     setImage(image.smallSrc);
@@ -290,6 +288,7 @@ export default function ArtsAndCrafts(props) {
           }}
           titleBarOptions={[
             <TitleBar.Help key="help" onClick={() => alert("Help!")} />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseArtsAndCrafts} />,
           ]}
           menu={[

@@ -33,6 +33,7 @@ export default function Contact(props) {
                 alert("Help!");
               }}
             />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseContact} />,
           ]}
           menu={[

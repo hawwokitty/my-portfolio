@@ -311,6 +311,7 @@ export default function Coding(props) {
                 alert("Help!");
               }}
             />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseCoding} />,
           ]}
           menu={[

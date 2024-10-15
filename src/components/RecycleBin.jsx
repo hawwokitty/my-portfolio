@@ -36,6 +36,7 @@ export default function RecycleBin(props) {
                 alert("Help!");
               }}
             />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseRecycleBin} />,
           ]}
           menu={[

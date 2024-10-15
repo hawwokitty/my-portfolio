@@ -33,18 +33,16 @@ export default function PaintComp(props) {
           }}
           titleBarOptions={[
             <TitleBar.Help key="help" onClick={handleShowHelp} />,
-            // <TitleBar.Minimize />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleClosePaint} />,
           ]}
         >
           <Frame h="100%" w="100%" overflow="auto">
-          {/* <div style={windowSmall ? ({ height: (window.innerHeight * 0.7), overflow:"auto" }) : null}> */}
             <iframe
               src="https://jspaint.app"
               width="100%"
               height="99%"
             ></iframe>
-            {/* </div> */}
           </Frame>
         </Modal>
       )}

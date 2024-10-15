@@ -32,6 +32,7 @@ export default function Credit(props) {
                 alert("Help!");
               }}
             />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseCredit} />,
           ]}
           menu={[

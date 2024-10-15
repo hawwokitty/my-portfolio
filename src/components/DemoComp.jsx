@@ -45,6 +45,7 @@ export default function DemoComp(props) {
                 alert("Help!");
               }}
             />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseDemoComp} />,
           ]}
           menu={[

@@ -46,6 +46,7 @@ export default function Resume(props) {
                 alert("Help!");
               }}
             />,
+            <Modal.Minimize />,
             <TitleBar.Close key="close" onClick={handleCloseResume} />,
           ]}
           // menu={[

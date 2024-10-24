@@ -39,13 +39,10 @@ export default function ArtPrompt(props) {
   // Function to fetch emoji from api
   const fetchEmoji = async () => {
     try {
-      const response = await fetch("https://emojihub.yurace.pro/api/random"); // fetch a random emoji from the api
+      const response = await fetch("https://portfolio-server-gamma-inky.vercel.app/api/emojis"); 
       const data = await response.json();
-      if (data && data.htmlCode) {
-        // Check for the correct structure
-        setEmoji(data.htmlCode[0]); // Set the emoji using the first HTML code in the array
-        // console.log(data.htmlCode[0]);
-      }
+      const randomIndex = Math.floor(Math.random() * data.length);
+      setEmoji(data[randomIndex].emoji); // Assuming the API has an 'emoji' field
     } catch (error) {
       console.error("Error fetching emoji", error);
     }

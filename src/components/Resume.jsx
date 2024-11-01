@@ -118,9 +118,8 @@ export default function Resume(props) {
             <Tab title="Experience">
               <Fieldset legend="Manager and Organizer">
                 <Checkbox readOnly checked={false}>
-                  <b>Kazokucon (Yugicon merged with Kazokucon)</b>, a voluntary cosplay Organization, where a
-                  one-day conference is organized annually with about 100
-                  participants (2016 - now)
+                  <b><a href="https://www.kazokucon.no/">Kazokucon</a> (Yugicon merged with Kazokucon)</b>, a voluntary cosplay Organization, where a
+                  two-day conference is organized annually (2016 - now)
                 </Checkbox>
                 <Checkbox readOnly checked={false}>
                   <b>Mega Minecraft Battle Royale</b>, a gaming event held once

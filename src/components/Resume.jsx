@@ -118,7 +118,7 @@ export default function Resume(props) {
             <Tab title="Experience">
               <Fieldset legend="Manager and Organizer">
                 <Checkbox readOnly checked={false}>
-                  <b>Yugicon</b>, a voluntary cosplay Organization, where a
+                  <b>Kazokucon (Yugicon merged with Kazokucon)</b>, a voluntary cosplay Organization, where a
                   one-day conference is organized annually with about 100
                   participants (2016 - now)
                 </Checkbox>
@@ -175,7 +175,7 @@ export default function Resume(props) {
                     <li className="resume-skills">SQL</li>
                     <ProgressBar percent={69} width="200px" />
                     <li className="resume-skills">React</li>
-                    <ProgressBar percent={62} width="200px" />
+                    <ProgressBar percent={79} width="200px" />
                   </ul>
                 </Fieldset>
                 <Fieldset legend="Languages (speaking, not programming)">

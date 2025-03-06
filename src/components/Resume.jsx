@@ -175,6 +175,8 @@ export default function Resume(props) {
                     <ProgressBar percent={69} width="200px" />
                     <li className="resume-skills">React</li>
                     <ProgressBar percent={83} width="200px" />
+                    <li className="resume-skills">Python</li>
+                    <ProgressBar percent={25} width="200px" />
                   </ul>
                 </Fieldset>
                 <Fieldset legend="Languages (speaking, not programming)">

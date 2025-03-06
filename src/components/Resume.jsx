@@ -168,13 +168,13 @@ export default function Resume(props) {
                     <li className="resume-skills">CSS</li>
                     <ProgressBar percent={74} width="200px" />
                     <li className="resume-skills">JavaScript</li>
-                    <ProgressBar percent={88} width="200px" />
+                    <ProgressBar percent={89} width="200px" />
                     <li className="resume-skills">C#</li>
-                    <ProgressBar percent={60} width="200px" />
+                    <ProgressBar percent={78} width="200px" />
                     <li className="resume-skills">SQL</li>
                     <ProgressBar percent={69} width="200px" />
                     <li className="resume-skills">React</li>
-                    <ProgressBar percent={79} width="200px" />
+                    <ProgressBar percent={83} width="200px" />
                   </ul>
                 </Fieldset>
                 <Fieldset legend="Languages (speaking, not programming)">

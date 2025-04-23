@@ -293,13 +293,13 @@ export default function Coding(props) {
       id: "startingover",
       name: "Starting Over",
       description:
-        "This is a game I'm working on... very dear to me... pls don't judge it too hard!! I can't really say what the goal or concept is, because that would be spoilers. Also the demo is too big to share, so the only way for you to see it is by cloning the repo haha! good luck :D",
+        "This is a game I'm working on... very dear to me... pls don't judge it too hard!! I can't really say what the goal or concept is, because that would be spoilers, you may look at the demo tho!",
       github:
         "https://github.com/hawwokitty/Game",
       language: "C#",
       category: "Mono Game",
       icon: "./cSharp.png",
-      demo: "src/videos/startingover.mp4",
+      demo: "https://www.youtube.com/embed/JweNMjoPZW0",
     },
   ];
 

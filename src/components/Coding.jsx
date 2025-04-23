@@ -185,13 +185,23 @@ export default function Coding(props) {
       demo: "https://hawwokitty.github.io/my-portfolio/",
     },
     {
+      id: "kristiania",
+      name: "Kristiania Quiz",
+      description: "I made a quiz for my sisters job, she works at Kristiania, for yet-to-be students to figure out which bachelor program is most suitable for them :) Please open it on mobile if you're able! It is only supposed to be viewed on mobile.",
+      github: "https://github.com/hawwokitty/kristiania-quiz",
+      language: "JavaScript",
+      category: "React",
+      icon: "./js.png",
+      demo: "https://hawwokitty.github.io/kristiania-quiz/",
+    },
+    {
       id: "snake",
       name: "Snake",
       description:
         "The classic Snake game, but playable right in your terminal! Old-school fun, no frills—just pure nostalgia.",
       github: "https://github.com/hawwokitty/get_cSharp/tree/main/Snake/Snake",
       language: "C#",
-      category: "",
+      category: "Console App",
       icon: "./cSharp.png",
       demo: "src/videos/snake.mp4",
     },
@@ -203,7 +213,7 @@ export default function Coding(props) {
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/FlappyBird/FlappyBird",
       language: "C#",
-      category: "",
+      category: "Console App",
       icon: "./cSharp.png",
       demo: "src/videos/flappyBird.mp4",
     },
@@ -215,7 +225,7 @@ export default function Coding(props) {
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/Frogger/Frogger",
       language: "C#",
-      category: "",
+      category: "Console App",
       icon: "./cSharp.png",
       demo: "src/videos/frogger.mp4",
     },
@@ -227,7 +237,7 @@ export default function Coding(props) {
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/HarryPotter/HarryPotter",
       language: "C#",
-      category: "",
+      category: "Console App",
       icon: "./cSharp.png",
       demo: "src/videos/harrypotter.mp4",
     },
@@ -239,9 +249,57 @@ export default function Coding(props) {
       github:
         "https://github.com/hawwokitty/get_cSharp/tree/main/HouseDecoration/HouseDecoration",
       language: "C#",
-      category: "",
+      category: "Console App",
       icon: "./cSharp.png",
       demo: "src/videos/housedecor.mp4",
+    },
+    {
+      id: "audioprog",
+      name: "Cute Synth",
+      description:
+        "Cute Synth is a simple yet powerful Python-based synthesizer that generates different waveforms (sine, square, sawtooth) and applies various effects. It features a GUI built with PyQt6, allowing easy interaction with audio parameters.",
+      github:
+        "https://github.com/hawwokitty/audio_prog",
+      language: "Python",
+      category: "",
+      icon: "./python.png",
+      demo: "src/videos/audioprog.mp4",
+    },
+    {
+      id: "minesweeper",
+      name: "Minesweeper",
+      description:
+        "Literally, it’s Minesweeper. Click tiles, avoid bombs, win (or don't).",
+      github:
+        "https://github.com/hawwokitty/MineSweeper2",
+      language: "C#",
+      category: "Windows Forms",
+      icon: "./cSharp.png",
+      demo: "src/videos/minesweeper.mp4",
+    },
+    {
+      id: "shipgame",
+      name: "Ship Game",
+      description:
+        "The Ship Game is an exciting action game built using C# and WPF. The goal is to control multiple ships as they stay within a set range and collecting points. Ships are removed when they either finish their paths or get destroyed due to errors in navigation.",
+      github:
+        "https://github.com/hawwokitty/Ship-Game",
+      language: "C#",
+      category: "WPF",
+      icon: "./cSharp.png",
+      demo: "src/videos/shipgame.mp4",
+    },
+    {
+      id: "startingover",
+      name: "Starting Over",
+      description:
+        "This is a game I'm working on... very dear to me... pls don't judge it too hard!! I can't really say what the goal or concept is, because that would be spoilers. Also the demo is too big to share, so the only way for you to see it is by cloning the repo haha! good luck :D",
+      github:
+        "https://github.com/hawwokitty/Game",
+      language: "C#",
+      category: "Mono Game",
+      icon: "./cSharp.png",
+      demo: "src/videos/startingover.mp4",
     },
   ];
 
